@@ -5,30 +5,12 @@ import * as Animatable from 'react-native-animatable';
 
 export const BottomBar = () => {
   const slideDuration = useSelector(store => store.ui.animations.slideDuration);
-  const selectedFeature = useSelector(store => store.parking.selectedFeature);
   const fetchingFeatures = useSelector(store => store.ui.api.fetchingFeatures);
   const fetchingFeaturesMessage = useSelector(
     store => store.ui.api.fetchingFeaturesMessage,
   );
 
-  const userHoldsDown = useSelector(
-    store => store.ui.interactions.userHoldsDown,
-  );
-
   let bottomBar;
-
-  const [description, setDescription] = useState('');
-  const [address, setAddress] = useState('');
-
-  useEffect(() => {
-    if (selectedFeature && selectedFeature.properties) {
-      setDescription(selectedFeature.properties.OTHER_INFO);
-      setAddress(selectedFeature.properties.ADDRESS);
-    } else {
-      setDescription('');
-      setAddress('');
-    }
-  }, [selectedFeature]);
 
   // useEffect(() => {
   //   if (userHoldsDown) {
@@ -53,9 +35,6 @@ export const BottomBar = () => {
           {fetchingFeaturesMessage}
         </Text>
       </View>
-
-      <Text style={styles.address}>{address}</Text>
-      <Text style={styles.description}>{description}</Text>
     </Animatable.View>
   );
 };
@@ -86,7 +65,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#555555aa',
     // width: '80%',
     padding: 5,
-    borderRadius: 5,
   },
   loadingIndicatorText: {
     color: 'white',

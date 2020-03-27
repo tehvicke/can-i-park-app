@@ -144,7 +144,7 @@ export const MapBackground = () => {
         dispatch(ui.actions.setSelectedFeatureId(feature.id));
         dispatch(parking.actions.setSelectedFeature(feature));
 
-        // console.log(feature.properties);
+        console.log(feature.properties);
         return;
       });
     };

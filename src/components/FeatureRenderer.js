@@ -11,8 +11,8 @@ export const FeatureRenderer = () => {
   console.log(moment('2020-03-18 12:01', 'YYYY-MM-DD HH:mm'));
 
   // const testDate = moment('2020-03-20 12:01', 'YYYY-MM-DD HH:mm');
-  const testDate = moment('2020-03-18 12:01', 'YYYY-MM-DD HH:mm');
-  // const testDate = moment();
+  // const testDate = moment('2020-03-18 12:01', 'YYYY-MM-DD HH:mm');
+  const testDate = moment();
 
   const validator = new ParkingValidator(features, testDate);
 

@@ -1,0 +1,706 @@
+{
+  "type": "FeatureCollection",
+  "totalFeatures": 22,
+  "features": [
+    {
+      "type": "Feature",
+      "id": "LTFR_P_TILLATEN.29601637",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [18.065761, 59.338832],
+          [18.065714, 59.33907],
+          [18.065703, 59.33913],
+          [18.065083, 59.339723]
+        ]
+      },
+      "geometry_name": "GEOMETRY",
+      "properties": {
+        "FID": 29601637,
+        "FEATURE_OBJECT_ID": 14876863,
+        "FEATURE_VERSION_ID": 1,
+        "EXTENT_NO": 1,
+        "VALID_FROM": "2017-12-12T23:00:00Z",
+        "VALID_TO": "2020-02-27T23:00:00Z",
+        "VEHICLE": "fordon",
+        "START_TIME": 600,
+        "END_TIME": 0,
+        "START_WEEKDAY": "onsdag",
+        "CITATION": "0180 2017-09731",
+        "STREET_NAME": "Johannesgatan",
+        "CITY_DISTRICT": "Norrmalm",
+        "PARKING_DISTRICT": "City",
+        "OTHER_INFO": "Servicetid onsdag 00:00-06:00",
+        "VF_PLATS_TYP": "P Avgift, boende",
+        "ADDRESS": "Jutas Backe 8 - Johannesgatan 28",
+        "RDT_URL": "https://rdt.transportstyrelsen.se/rdt/AF06_View.aspx?BeslutsMyndighetKod=0180&BeslutadAr=2017&LopNr=09731"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LTFR_P_TILLATEN.29601250",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [18.065889, 59.33891],
+          [18.065856, 59.339077],
+          [18.065843, 59.339145],
+          [18.065842, 59.339149],
+          [18.065839, 59.339154],
+          [18.065836, 59.339158],
+          [18.065157, 59.339808],
+          [18.065095, 59.339867]
+        ]
+      },
+      "geometry_name": "GEOMETRY",
+      "properties": {
+        "FID": 29601250,
+        "FEATURE_OBJECT_ID": 14876868,
+        "FEATURE_VERSION_ID": 1,
+        "EXTENT_NO": 1,
+        "VALID_FROM": "2018-02-28T23:00:00Z",
+        "VALID_TO": "2020-02-27T23:00:00Z",
+        "VEHICLE": "fordon",
+        "START_TIME": 600,
+        "END_TIME": 0,
+        "START_WEEKDAY": "onsdag",
+        "CITATION": "0180 2017-09733",
+        "STREET_NAME": "Johannesgatan",
+        "CITY_DISTRICT": "Norrmalm",
+        "PARKING_DISTRICT": "City",
+        "OTHER_INFO": "Servicetid onsdag 00:00-06:00",
+        "VF_PLATS_TYP": "P Avgift, boende",
+        "ADDRESS": "Johannesgatan 18 - 28",
+        "RDT_URL": "https://rdt.transportstyrelsen.se/rdt/AF06_View.aspx?BeslutsMyndighetKod=0180&BeslutadAr=2017&LopNr=09733"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LTFR_P_TILLATEN.29601105",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [18.065866, 59.338196],
+          [18.065854, 59.338269],
+          [18.065785, 59.338677]
+        ]
+      },
+      "geometry_name": "GEOMETRY",
+      "properties": {
+        "FID": 29601105,
+        "FEATURE_OBJECT_ID": 14876866,
+        "FEATURE_VERSION_ID": 1,
+        "EXTENT_NO": 1,
+        "VALID_FROM": "2017-12-12T23:00:00Z",
+        "VEHICLE": "fordon",
+        "START_TIME": 600,
+        "END_TIME": 0,
+        "START_WEEKDAY": "onsdag",
+        "CITATION": "0180 2017-09732",
+        "STREET_NAME": "Johannesgatan",
+        "CITY_DISTRICT": "Norrmalm",
+        "PARKING_DISTRICT": "City",
+        "OTHER_INFO": "Servicetid onsdag 00:00-06:00",
+        "VF_PLATS_TYP": "P Avgift, boende",
+        "ADDRESS": "Johannesgatan 9 - 16",
+        "RDT_URL": "https://rdt.transportstyrelsen.se/rdt/AF06_View.aspx?BeslutsMyndighetKod=0180&BeslutadAr=2017&LopNr=09732"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LTFR_P_TILLATEN.29601103",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [18.065972, 59.339994],
+          [18.066109, 59.339839],
+          [18.066409, 59.339525],
+          [18.066652, 59.339273],
+          [18.066905, 59.339009],
+          [18.067002, 59.338889]
+        ]
+      },
+      "geometry_name": "GEOMETRY",
+      "properties": {
+        "FID": 29601103,
+        "FEATURE_OBJECT_ID": 14875501,
+        "FEATURE_VERSION_ID": 1,
+        "EXTENT_NO": 1,
+        "VALID_FROM": "2017-12-17T23:00:00Z",
+        "VEHICLE": "fordon",
+        "START_TIME": 600,
+        "END_TIME": 0,
+        "START_WEEKDAY": "tisdag",
+        "CITATION": "0180 2017-09650",
+        "STREET_NAME": "Regeringsgatan",
+        "CITY_DISTRICT": "Norrmalm",
+        "PARKING_DISTRICT": "City",
+        "OTHER_INFO": "Servicetid tisdag 00:00-06:00",
+        "VF_PLATS_TYP": "P Avgift, boende",
+        "ADDRESS": "Regeringsgatan 107 - 103",
+        "RDT_URL": "https://rdt.transportstyrelsen.se/rdt/AF06_View.aspx?BeslutsMyndighetKod=0180&BeslutadAr=2017&LopNr=09650"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LTFR_P_TILLATEN.29601210",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [18.067141, 59.338974],
+          [18.067138, 59.338988],
+          [18.067137, 59.338993],
+          [18.067134, 59.338998],
+          [18.067131, 59.339002],
+          [18.066295, 59.339873],
+          [18.066133, 59.340054]
+        ]
+      },
+      "geometry_name": "GEOMETRY",
+      "properties": {
+        "FID": 29601210,
+        "FEATURE_OBJECT_ID": 14875573,
+        "FEATURE_VERSION_ID": 1,
+        "EXTENT_NO": 1,
+        "VALID_FROM": "2017-12-17T23:00:00Z",
+        "VEHICLE": "fordon",
+        "START_TIME": 600,
+        "END_TIME": 0,
+        "START_WEEKDAY": "tisdag",
+        "CITATION": "0180 2017-09672",
+        "STREET_NAME": "Regeringsgatan",
+        "CITY_DISTRICT": "Norrmalm",
+        "PARKING_DISTRICT": "City",
+        "OTHER_INFO": "Servicetid tisdag 00:00-06:00",
+        "VF_PLATS_TYP": "P Avgift, boende",
+        "ADDRESS": "Regeringsgatan 92 - 107",
+        "RDT_URL": "https://rdt.transportstyrelsen.se/rdt/AF06_View.aspx?BeslutsMyndighetKod=0180&BeslutadAr=2017&LopNr=09672"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LTFR_P_TILLATEN.29603749",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [18.066963, 59.339186],
+          [18.066843, 59.339311]
+        ]
+      },
+      "geometry_name": "GEOMETRY",
+      "properties": {
+        "FID": 29603749,
+        "FEATURE_OBJECT_ID": 16634160,
+        "FEATURE_VERSION_ID": 1,
+        "EXTENT_NO": 1,
+        "VALID_FROM": "2019-05-31T22:00:00Z",
+        "VEHICLE": "motorcykel",
+        "START_TIME": 600,
+        "END_TIME": 0,
+        "START_WEEKDAY": "tisdag",
+        "CITATION": "0180 2019-01573",
+        "STREET_NAME": "Regeringsgatan",
+        "CITY_DISTRICT": "Norrmalm",
+        "PARKING_DISTRICT": "City",
+        "OTHER_INFO": "Servicetid tisdag 00:00-06:00",
+        "VF_METER": 15,
+        "VF_PLATS_TYP": "Reserverad p-plats motorcykel",
+        "ADDRESS": "Regeringsgatan 94",
+        "RDT_URL": "https://rdt.transportstyrelsen.se/rdt/AF06_View.aspx?BeslutsMyndighetKod=0180&BeslutadAr=2019&LopNr=01573"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LTFR_P_TILLATEN.29601209",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [18.067205, 59.338399],
+          [18.067147, 59.338736]
+        ]
+      },
+      "geometry_name": "GEOMETRY",
+      "properties": {
+        "FID": 29601209,
+        "FEATURE_OBJECT_ID": 14875568,
+        "FEATURE_VERSION_ID": 1,
+        "EXTENT_NO": 1,
+        "VALID_FROM": "2017-12-17T23:00:00Z",
+        "VEHICLE": "fordon",
+        "START_TIME": 600,
+        "END_TIME": 0,
+        "START_WEEKDAY": "tisdag",
+        "CITATION": "0180 2017-09671",
+        "STREET_NAME": "Regeringsgatan",
+        "CITY_DISTRICT": "Norrmalm",
+        "PARKING_DISTRICT": "City",
+        "OTHER_INFO": "Servicetid tisdag 00:00-06:00",
+        "VF_PLATS_TYP": "P Avgift, boende",
+        "ADDRESS": "Regeringsgatan 86 - 90",
+        "RDT_URL": "https://rdt.transportstyrelsen.se/rdt/AF06_View.aspx?BeslutsMyndighetKod=0180&BeslutadAr=2017&LopNr=09671"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LTFR_P_TILLATEN.29601565",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [18.067203, 59.338498],
+          [18.067184, 59.338607]
+        ]
+      },
+      "geometry_name": "GEOMETRY",
+      "properties": {
+        "FID": 29601565,
+        "FEATURE_OBJECT_ID": 14875025,
+        "FEATURE_VERSION_ID": 1,
+        "EXTENT_NO": 1,
+        "VALID_FROM": "2017-12-17T23:00:00Z",
+        "VEHICLE": "rörelsehindrade",
+        "CITATION": "0180 2017-09559",
+        "STREET_NAME": "Regeringsgatan",
+        "CITY_DISTRICT": "Norrmalm",
+        "PARKING_DISTRICT": "City",
+        "VF_METER": 12,
+        "VF_PLATS_TYP": "Reserverad p-plats rörelsehindrad",
+        "ADDRESS": "Regeringsgatan 86 - 88",
+        "RDT_URL": "https://rdt.transportstyrelsen.se/rdt/AF06_View.aspx?BeslutsMyndighetKod=0180&BeslutadAr=2017&LopNr=09559"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LTFR_P_TILLATEN.29604835",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [18.068229, 59.339034],
+          [18.068189, 59.339073]
+        ]
+      },
+      "geometry_name": "GEOMETRY",
+      "properties": {
+        "FID": 29604835,
+        "FEATURE_OBJECT_ID": 16628616,
+        "FEATURE_VERSION_ID": 1,
+        "EXTENT_NO": 1,
+        "VALID_FROM": "2019-05-31T22:00:00Z",
+        "VEHICLE": "motorcykel",
+        "START_TIME": 600,
+        "END_TIME": 0,
+        "START_WEEKDAY": "onsdag",
+        "CITATION": "0180 2019-01436",
+        "STREET_NAME": "Birger Jarlsgatan",
+        "CITY_DISTRICT": "Östermalm",
+        "PARKING_DISTRICT": "Östermalm",
+        "OTHER_INFO": "Servicetid onsdag 00:00-06:00",
+        "VF_METER": 5,
+        "VF_PLATS_TYP": "Reserverad p-plats motorcykel",
+        "ADDRESS": "Birger Jarlsgatan 36",
+        "RDT_URL": "https://rdt.transportstyrelsen.se/rdt/AF06_View.aspx?BeslutsMyndighetKod=0180&BeslutadAr=2019&LopNr=01436"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LTFR_P_TILLATEN.29602506",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [18.068939, 59.338345],
+          [18.068822, 59.338458],
+          [18.068486, 59.338784],
+          [18.068491, 59.338777]
+        ]
+      },
+      "geometry_name": "GEOMETRY",
+      "properties": {
+        "FID": 29602506,
+        "FEATURE_OBJECT_ID": 15731651,
+        "FEATURE_VERSION_ID": 1,
+        "EXTENT_NO": 2,
+        "VALID_FROM": "2018-10-07T22:00:00Z",
+        "VEHICLE": "fordon",
+        "START_TIME": 600,
+        "END_TIME": 0,
+        "START_WEEKDAY": "onsdag",
+        "CITATION": "0180 2018-04785",
+        "STREET_NAME": "Birger Jarlsgatan",
+        "CITY_DISTRICT": "Östermalm",
+        "PARKING_DISTRICT": "Östermalm",
+        "OTHER_INFO": "Servicetid onsdag 00:00-06:00",
+        "VF_PLATS_TYP": "P Avgift, boende",
+        "ADDRESS": "Birger Jarlsgatan 32A - 34",
+        "RDT_URL": "https://rdt.transportstyrelsen.se/rdt/AF06_View.aspx?BeslutsMyndighetKod=0180&BeslutadAr=2018&LopNr=04785"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LTFR_P_TILLATEN.29600702",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [18.068717, 59.338558],
+          [18.068564, 59.338709]
+        ]
+      },
+      "geometry_name": "GEOMETRY",
+      "properties": {
+        "FID": 29600702,
+        "FEATURE_OBJECT_ID": 14601108,
+        "FEATURE_VERSION_ID": 1,
+        "EXTENT_NO": 1,
+        "VALID_FROM": "2017-08-22T22:00:00Z",
+        "VEHICLE": "rörelsehindrade",
+        "CITATION": "0180 2017-07780",
+        "STREET_NAME": "Birger Jarlsgatan",
+        "CITY_DISTRICT": "Östermalm",
+        "PARKING_DISTRICT": "Östermalm",
+        "VF_METER": 19,
+        "VF_PLATS_TYP": "Reserverad p-plats rörelsehindrad",
+        "ADDRESS": "Birger Jarlsgatan 32B - 34",
+        "RDT_URL": "https://rdt.transportstyrelsen.se/rdt/AF06_View.aspx?BeslutsMyndighetKod=0180&BeslutadAr=2017&LopNr=07780"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LTFR_P_TILLATEN.29601106",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [18.066025, 59.33728],
+          [18.065871, 59.338168],
+          [18.065866, 59.338196]
+        ]
+      },
+      "geometry_name": "GEOMETRY",
+      "properties": {
+        "FID": 29601106,
+        "FEATURE_OBJECT_ID": 14876866,
+        "FEATURE_VERSION_ID": 1,
+        "EXTENT_NO": 2,
+        "VALID_FROM": "2017-12-12T23:00:00Z",
+        "VEHICLE": "fordon",
+        "START_TIME": 600,
+        "END_TIME": 0,
+        "START_WEEKDAY": "onsdag",
+        "CITATION": "0180 2017-09732",
+        "STREET_NAME": "Johannesgatan",
+        "CITY_DISTRICT": "Norrmalm",
+        "PARKING_DISTRICT": "City",
+        "OTHER_INFO": "Servicetid onsdag 00:00-06:00",
+        "VF_PLATS_TYP": "P Avgift, boende",
+        "ADDRESS": "Johannesgatan 1 - 9",
+        "RDT_URL": "https://rdt.transportstyrelsen.se/rdt/AF06_View.aspx?BeslutsMyndighetKod=0180&BeslutadAr=2017&LopNr=09732"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LTFR_P_TILLATEN.29603391",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [18.065932, 59.338112],
+          [18.065923, 59.338164]
+        ]
+      },
+      "geometry_name": "GEOMETRY",
+      "properties": {
+        "FID": 29603391,
+        "FEATURE_OBJECT_ID": 16553942,
+        "FEATURE_VERSION_ID": 1,
+        "EXTENT_NO": 1,
+        "VALID_FROM": "2019-01-22T23:00:00Z",
+        "VEHICLE": "rörelsehindrade",
+        "CITATION": "0180 2019-00422",
+        "STREET_NAME": "Johannesgatan",
+        "CITY_DISTRICT": "Norrmalm",
+        "PARKING_DISTRICT": "City",
+        "VF_METER": 6,
+        "VF_PLATS_TYP": "Reserverad p-plats rörelsehindrad",
+        "ADDRESS": "Johannesgatan 9",
+        "RDT_URL": "https://rdt.transportstyrelsen.se/rdt/AF06_View.aspx?BeslutsMyndighetKod=0180&BeslutadAr=2019&LopNr=00422"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LTFR_P_TILLATEN.29601208",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [18.067395, 59.337316],
+          [18.067236, 59.338246],
+          [18.067234, 59.338258]
+        ]
+      },
+      "geometry_name": "GEOMETRY",
+      "properties": {
+        "FID": 29601208,
+        "FEATURE_OBJECT_ID": 14875568,
+        "FEATURE_VERSION_ID": 1,
+        "EXTENT_NO": 2,
+        "VALID_FROM": "2017-12-17T23:00:00Z",
+        "VEHICLE": "fordon",
+        "START_TIME": 600,
+        "END_TIME": 0,
+        "START_WEEKDAY": "tisdag",
+        "CITATION": "0180 2017-09671",
+        "STREET_NAME": "Regeringsgatan",
+        "CITY_DISTRICT": "Norrmalm",
+        "PARKING_DISTRICT": "City",
+        "OTHER_INFO": "Servicetid tisdag 00:00-06:00",
+        "VF_PLATS_TYP": "P Avgift, boende",
+        "ADDRESS": "Regeringsgatan 76 - 84",
+        "RDT_URL": "https://rdt.transportstyrelsen.se/rdt/AF06_View.aspx?BeslutsMyndighetKod=0180&BeslutadAr=2017&LopNr=09671"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LTFR_P_TILLATEN.29591939",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [18.068686, 59.338309],
+          [18.068676, 59.338323]
+        ]
+      },
+      "geometry_name": "GEOMETRY",
+      "properties": {
+        "FID": 29591939,
+        "FEATURE_OBJECT_ID": 6108327,
+        "FEATURE_VERSION_ID": 1,
+        "EXTENT_NO": 1,
+        "VALID_FROM": "2014-02-27T23:00:00Z",
+        "VEHICLE": "beskickningsfordon",
+        "CITATION": "0180 2014-00450",
+        "STREET_NAME": "Birger Jarlsgatan",
+        "CITY_DISTRICT": "Norrmalm",
+        "PARKING_DISTRICT": "City",
+        "VF_METER": 18,
+        "VF_PLATS_TYP": "Reserverad p-plats beskickningsbil",
+        "ADDRESS": "Birger Jarlsgatan 35",
+        "RDT_URL": "https://rdt.transportstyrelsen.se/rdt/AF06_View.aspx?BeslutsMyndighetKod=0180&BeslutadAr=2014&LopNr=00450"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LTFR_P_TILLATEN.29591940",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [18.06868, 59.338317],
+          [18.068539, 59.338457]
+        ]
+      },
+      "geometry_name": "GEOMETRY",
+      "properties": {
+        "FID": 29591940,
+        "FEATURE_OBJECT_ID": 6108327,
+        "FEATURE_VERSION_ID": 1,
+        "EXTENT_NO": 2,
+        "VALID_FROM": "2014-02-27T23:00:00Z",
+        "VEHICLE": "beskickningsfordon",
+        "CITATION": "0180 2014-00450",
+        "STREET_NAME": "Birger Jarlsgatan",
+        "CITY_DISTRICT": "Norrmalm",
+        "PARKING_DISTRICT": "City",
+        "VF_METER": 18,
+        "VF_PLATS_TYP": "Reserverad p-plats beskickningsbil",
+        "ADDRESS": "Birger Jarlsgatan 35",
+        "RDT_URL": "https://rdt.transportstyrelsen.se/rdt/AF06_View.aspx?BeslutsMyndighetKod=0180&BeslutadAr=2014&LopNr=00450"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LTFR_P_TILLATEN.29592180",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [18.068901, 59.338378],
+          [18.068833, 59.338444]
+        ]
+      },
+      "geometry_name": "GEOMETRY",
+      "properties": {
+        "FID": 29592180,
+        "FEATURE_OBJECT_ID": 6490249,
+        "FEATURE_VERSION_ID": 1,
+        "EXTENT_NO": 2,
+        "VALID_FROM": "2015-04-09T22:00:00Z",
+        "VEHICLE": "beskickningsfordon",
+        "CITATION": "0180 2015-00751",
+        "STREET_NAME": "Birger Jarlsgatan",
+        "CITY_DISTRICT": "Östermalm",
+        "PARKING_DISTRICT": "Östermalm",
+        "VF_METER": 12,
+        "VF_PLATS_TYP": "Reserverad p-plats beskickningsbil",
+        "ADDRESS": "Birger Jarlsgatan 32B",
+        "RDT_URL": "https://rdt.transportstyrelsen.se/rdt/AF06_View.aspx?BeslutsMyndighetKod=0180&BeslutadAr=2015&LopNr=00751"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LTFR_P_TILLATEN.29589305",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [18.068824, 59.33845],
+          [18.068705, 59.338567]
+        ]
+      },
+      "geometry_name": "GEOMETRY",
+      "properties": {
+        "FID": 29589305,
+        "FEATURE_OBJECT_ID": 12823565,
+        "FEATURE_VERSION_ID": 1,
+        "EXTENT_NO": 1,
+        "VALID_FROM": "2017-07-16T22:00:00Z",
+        "VEHICLE": "fordon",
+        "START_TIME": 600,
+        "END_TIME": 0,
+        "START_WEEKDAY": "onsdag",
+        "CITATION": "0180 2017-03624",
+        "STREET_NAME": "Birger Jarlsgatan",
+        "CITY_DISTRICT": "Östermalm",
+        "PARKING_DISTRICT": "Östermalm",
+        "OTHER_INFO": "Servicetid onsdag 00:00-06:00",
+        "VF_METER": 15,
+        "VF_PLATS_TYP": "Tidsreglerad lastplats",
+        "ADDRESS": "Birger Jarlsgatan 32B",
+        "RDT_URL": "https://rdt.transportstyrelsen.se/rdt/AF06_View.aspx?BeslutsMyndighetKod=0180&BeslutadAr=2017&LopNr=03624"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LTFR_P_TILLATEN.29591948",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [18.068529, 59.338466],
+          [18.068382, 59.338611]
+        ]
+      },
+      "geometry_name": "GEOMETRY",
+      "properties": {
+        "FID": 29591948,
+        "FEATURE_OBJECT_ID": 5982098,
+        "FEATURE_VERSION_ID": 1,
+        "EXTENT_NO": 1,
+        "VALID_FROM": "2013-12-05T23:00:00Z",
+        "VEHICLE": "beskickningsfordon",
+        "CITATION": "0180 2013-03534",
+        "STREET_NAME": "Birger Jarlsgatan",
+        "CITY_DISTRICT": "Norrmalm",
+        "PARKING_DISTRICT": "City",
+        "VF_METER": 18,
+        "VF_PLATS_TYP": "Reserverad p-plats beskickningsbil",
+        "ADDRESS": "Birger Jarlsgatan 35 - 37",
+        "RDT_URL": "https://rdt.transportstyrelsen.se/rdt/AF06_View.aspx?BeslutsMyndighetKod=0180&BeslutadAr=2013&LopNr=03534"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LTFR_P_TILLATEN.29606297",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [18.065114, 59.339716],
+          [18.065231, 59.339605],
+          [18.065399, 59.339443],
+          [18.065489, 59.339354],
+          [18.065661, 59.339187],
+          [18.065712, 59.339137],
+          [18.065728, 59.339079],
+          [18.065744, 59.33899],
+          [18.06575, 59.338959],
+          [18.065768, 59.338857]
+        ]
+      },
+      "geometry_name": "GEOMETRY",
+      "properties": {
+        "FID": 29606297,
+        "FEATURE_OBJECT_ID": 17253556,
+        "FEATURE_VERSION_ID": 1,
+        "EXTENT_NO": 1,
+        "VALID_FROM": "2020-02-27T23:00:00Z",
+        "VEHICLE": "fordon",
+        "START_TIME": 600,
+        "END_TIME": 0,
+        "START_WEEKDAY": "onsdag",
+        "CITATION": "0180 2020-01062",
+        "STREET_NAME": "Johannesgatan",
+        "CITY_DISTRICT": "Norrmalm",
+        "PARKING_DISTRICT": "City",
+        "OTHER_INFO": "Servicetid onsdag 00:00-06:00",
+        "VF_PLATS_TYP": "P Avgift, boende",
+        "ADDRESS": "Johannesgatan 28 - 18",
+        "RDT_URL": "https://rdt.transportstyrelsen.se/rdt/AF06_View.aspx?BeslutsMyndighetKod=0180&BeslutadAr=2020&LopNr=01062"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LTFR_P_TILLATEN.29590385",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [18.06576, 59.338916],
+          [18.065734, 59.339047]
+        ]
+      },
+      "geometry_name": "GEOMETRY",
+      "properties": {
+        "FID": 29590385,
+        "FEATURE_OBJECT_ID": 14884278,
+        "FEATURE_VERSION_ID": 1,
+        "EXTENT_NO": 1,
+        "VALID_FROM": "2018-04-06T22:00:00Z",
+        "VEHICLE": "fordon",
+        "START_TIME": 600,
+        "END_TIME": 0,
+        "START_WEEKDAY": "onsdag",
+        "CITATION": "0180 2017-09953",
+        "STREET_NAME": "Johannesgatan",
+        "CITY_DISTRICT": "Norrmalm",
+        "PARKING_DISTRICT": "City",
+        "OTHER_INFO": "Servicetid onsdag 00:00-06:00",
+        "VF_METER": 15,
+        "VF_PLATS_TYP": "Tidsreglerad på- och avstigningsplats",
+        "ADDRESS": "Johannesgatan 18",
+        "RDT_URL": "https://rdt.transportstyrelsen.se/rdt/AF06_View.aspx?BeslutsMyndighetKod=0180&BeslutadAr=2017&LopNr=09953"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "LTFR_P_TILLATEN.29592353",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [18.067976, 59.339],
+          [18.067927, 59.339048]
+        ]
+      },
+      "geometry_name": "GEOMETRY",
+      "properties": {
+        "FID": 29592353,
+        "FEATURE_OBJECT_ID": 6490275,
+        "FEATURE_VERSION_ID": 1,
+        "EXTENT_NO": 1,
+        "VALID_FROM": "2015-04-09T22:00:00Z",
+        "VEHICLE": "beskickningsfordon",
+        "CITATION": "0180 2015-00752",
+        "STREET_NAME": "Birger Jarlsgatan",
+        "CITY_DISTRICT": "Norrmalm",
+        "PARKING_DISTRICT": "City",
+        "VF_METER": 6,
+        "VF_PLATS_TYP": "Reserverad p-plats beskickningsbil",
+        "ADDRESS": "Birger Jarlsgatan 41A",
+        "RDT_URL": "https://rdt.transportstyrelsen.se/rdt/AF06_View.aspx?BeslutsMyndighetKod=0180&BeslutadAr=2015&LopNr=00752"
+      }
+    }
+  ],
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:EPSG::4326"
+    }
+  }
+}

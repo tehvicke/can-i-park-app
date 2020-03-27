@@ -90,7 +90,11 @@ export const MapBackground = () => {
     if (position === undefined) {
       return;
     }
-    // console.log('Starting fetch for ', position);
+    console.log('Starting fetch for ', position);
+    dispatch(ui.actions.setFetchingFeatures(true));
+    dispatch(
+      ui.actions.setFetchingFeaturesMessage('Fetching street data from API'),
+    );
 
     axios
       .get(
@@ -100,11 +104,17 @@ export const MapBackground = () => {
         dispatch(parking.actions.updateFeatures(response.data, dispatch));
 
         console.log('Fetch successful for ', position);
+        dispatch(ui.actions.setFetchingFeatures(false));
         dispatch(ui.actions.setShouldUpdateSelectedFeature());
         return response;
       })
       .catch(error => {
         console.log(error);
+        dispatch(
+          ui.actions.setFetchingFeaturesMessage(
+            'Fetch failed due to API not responding',
+          ),
+        );
       });
   }, [shouldFetchFeatures]);
 

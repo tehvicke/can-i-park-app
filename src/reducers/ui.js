@@ -5,10 +5,14 @@ export const ui = createSlice({
   initialState: {
     selectedFeature: { id: undefined, shouldUpdate: false, allowed: false },
     map: { zoomLevel: 16, minZoomLevel: 14, maxZoomLevel: 18 },
+    api: {
+      fetchingFeatures: false,
+      fetchingFeaturesMessage: '',
+    },
     feature: {
       width: 15,
-      allowedColor: '#33cc33',
-      unAllowedColor: 'red',
+      allowedColor: '#05EA00',
+      unAllowedColor: '#EE3A42',
       selectedOpacity: 1,
       unSelectedOpacity: 0.3,
     },
@@ -44,6 +48,12 @@ export const ui = createSlice({
     },
     setSelectededAllowed: (state, action) => {
       state.selectedFeature.allowed = action.payload;
+    },
+    setFetchingFeatures: (state, action) => {
+      state.api.fetchingFeatures = action.payload;
+    },
+    setFetchingFeaturesMessage: (state, action) => {
+      state.api.fetchingFeaturesMessage = action.payload;
     },
   },
 });

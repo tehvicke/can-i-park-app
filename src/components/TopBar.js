@@ -3,21 +3,42 @@ import { StyleSheet, View, Text, Image } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Animatable from 'react-native-animatable';
 
+const parkingText = {
+  allowed: 'Parkering tillåten',
+  notAllowed: 'Parkering ej tillåten',
+};
+const allowedTextColor = '#005596';
+
+const parkingUntilText = 'Fram till onsdag 13/4 kl 17.00';
+
+const parkingSigns = {
+  allowed: require('../../lib/icons/e19-1.png'), // statically analyzed
+  notAllowed: require('../../lib/icons/c35-1.png'), // statically analyzed
+};
+
+const parkingSignSelector = allowed => {
+  if (allowed) {
+    return parkingSigns.allowed;
+  } else {
+    return parkingSigns.notAllowed;
+  }
+};
+
 export const TopBar = () => {
   const userHoldsDown = useSelector(
     store => store.ui.interactions.userHoldsDown,
   );
   const slideDuration = useSelector(store => store.ui.animations.slideDuration);
-
   const allowedColor = useSelector(store => store.ui.feature.allowedColor);
   const unAllowedColor = useSelector(store => store.ui.feature.unAllowedColor);
-
   const selectedFeature = useSelector(store => store.parking.selectedFeature);
 
-  const [description, setDescription] = useState('');
-
-  const [color, setColor] = useState('white');
   const [parkingAllowedText, setParkingAllowedText] = useState('');
+  const [parkingAllowedTextColor, setParkingAllowedTextColor] = useState(
+    'white',
+  );
+
+  const [description, setDescription] = useState('');
 
   const selectedFeatureIsAllowed = useSelector(
     store => store.ui.selectedFeature.allowed,
@@ -26,11 +47,16 @@ export const TopBar = () => {
 
   let statusBar;
 
-  const coloredSquare = styles.coloredSquare;
+  const parkingTextStyle = styles.parkingAllowedText;
+  const parkingTextCombined = StyleSheet.flatten([
+    { color: parkingAllowedTextColor },
+    parkingTextStyle,
+  ]);
 
-  const combinedStyles = StyleSheet.flatten([
-    { backgroundColor: color },
-    coloredSquare,
+  const parkingUntilTextStyle = styles.parkingUntilText;
+  const parkingUntilTextCombined = StyleSheet.flatten([
+    { color: parkingAllowedTextColor },
+    parkingUntilTextStyle,
   ]);
 
   useEffect(() => {
@@ -43,15 +69,17 @@ export const TopBar = () => {
 
   useEffect(() => {
     if (!selectedFeatureId) {
-      setColor('white');
+      setParkingAllowedText('Missing data, check local signs');
+      setParkingAllowedTextColor('gray');
+
       return;
     }
     if (selectedFeatureIsAllowed) {
-      setColor(allowedColor);
-      setParkingAllowedText('Parkering tillåtet!');
+      setParkingAllowedText(parkingText.allowed);
+      setParkingAllowedTextColor(allowedTextColor);
     } else {
-      setColor(unAllowedColor);
-      setParkingAllowedText(`Parking ej tillåtet`);
+      setParkingAllowedText(parkingText.notAllowed);
+      setParkingAllowedTextColor(unAllowedColor);
     }
   }, [selectedFeatureId, selectedFeatureIsAllowed]);
 
@@ -74,10 +102,19 @@ export const TopBar = () => {
       </View>
 
       <Animatable.View style={styles.statusBar} ref={c => (statusBar = c)}>
-        <View style={combinedStyles} />
+        {selectedFeatureId && (
+          <Image
+            style={styles.parkingSign}
+            source={parkingSignSelector(selectedFeatureIsAllowed)}
+          />
+        )}
         <View style={styles.textHolder}>
-          <Text style={styles.parkingAllowedText}>{parkingAllowedText}</Text>
-          {/* <Text style={styles.description}>{description}</Text> */}
+          <Text style={parkingTextCombined}>{parkingAllowedText}</Text>
+          <Text style={parkingUntilTextCombined}>{parkingUntilText}</Text>
+          <View style={styles.showDetailsHolder}>
+            <Image />
+            <Text>Visa detaljer</Text>
+          </View>
         </View>
       </Animatable.View>
     </View>
@@ -88,7 +125,7 @@ const styles = StyleSheet.create({
   topBar: {
     position: 'absolute',
     top: 0,
-    height: 180,
+
     width: '100%',
     backgroundColor: 'transparent',
   },
@@ -109,34 +146,44 @@ const styles = StyleSheet.create({
   logo: {
     width: 110,
     resizeMode: 'contain',
-    // marginLeft: 18,
   },
   city: {
     color: 'white',
   },
   statusBar: {
-    height: '50%',
+    height: 100,
     width: '100%',
     zIndex: 0,
     backgroundColor: '#fafafa',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+    padding: 15,
   },
   coloredSquare: {
-    width: 50,
-    height: 50,
-    margin: 10,
+    width: 60,
+    height: 60,
+    display: 'none',
+  },
+  parkingSign: {
+    width: 65,
+    height: 65,
   },
   textHolder: {
-    width: '80%',
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
+    // alignItems: 'flex-start',
+    // justifyContent: 'flex-start'
+    paddingLeft: 10,
+    height: '100%',
+    marginTop: 10,
   },
   parkingAllowedText: {
     fontWeight: '700',
-    fontSize: 16,
+    fontSize: 20,
+  },
+  parkingUntilText: {
+    marginTop: 5,
   },
   description: {
     width: '100%',

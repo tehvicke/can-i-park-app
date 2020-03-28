@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
-    "ios": "react-native run-ios",
+    "ios": "react-native run-ios --device VicPhone",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint ."
@@ -36,6 +36,12 @@
     "react-test-renderer": "16.9.0"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "transformIgnorePatterns": [
+      "node_modules/(?!(react-native|react-native-splash-screen|@react-native-mapbox-gl/maps)/)"
+    ],
+    "setupFiles": [
+      "<rootDir>/setupTests.js"
+    ]
   }
 }

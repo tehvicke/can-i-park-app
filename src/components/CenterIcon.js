@@ -20,7 +20,7 @@ export const CenterIcon = () => {
   return (
     <Image
       style={styles.marker}
-      source={selectedFeature ? markerUrls.active : markerUrls.nonActive}
+      source={selectedFeatureId ? markerUrls.active : markerUrls.nonActive}
     />
   );
 };

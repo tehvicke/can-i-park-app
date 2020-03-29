@@ -5,10 +5,11 @@ import * as Animatable from 'react-native-animatable';
 
 /* Various constants that should be replaced / added to the global state */
 const parkingText = {
-  allowed: 'Parkering tillåten',
-  notAllowed: 'Parkering ej tillåten',
+  allowed: 'Gatuparkering tillåten',
+  notAllowed: 'Gatuparkering ej tillåten',
 };
 const allowedTextColor = '#005596';
+const notSelectedTextColor = '#777777';
 
 const parkingUntilText = 'Fram till onsdag 13/4 kl 17.00';
 
@@ -37,6 +38,7 @@ export const TopBar = () => {
   const [parkingAllowedTextColor, setParkingAllowedTextColor] = useState(
     'white',
   );
+  const [horizontalBarColor, setHorizontalBarColor] = useState('');
   const [parkingAddress, setParkingAddress] = useState('');
 
   const [description, setDescription] = useState(parkingUntilText);
@@ -48,6 +50,7 @@ export const TopBar = () => {
 
   let animatedHolder;
   let addressBar;
+  let horizontalColoredBar;
 
   const parkingTextStyle = styles.parkingAllowedText;
   const parkingTextCombined = StyleSheet.flatten([
@@ -59,6 +62,12 @@ export const TopBar = () => {
   const parkingUntilTextCombined = StyleSheet.flatten([
     { color: parkingAllowedTextColor },
     parkingUntilTextStyle,
+  ]);
+
+  const horizontalColoredBarStyle = styles.horizontalColoredBar;
+  const horizontalColoredBarCombined = StyleSheet.flatten([
+    { backgroundColor: horizontalBarColor },
+    horizontalColoredBarStyle,
   ]);
 
   useEffect(() => {
@@ -74,9 +83,10 @@ export const TopBar = () => {
 
   useEffect(() => {
     if (!selectedFeatureId) {
-      setParkingAllowedText('Missing data, check local signs');
-      setParkingAllowedTextColor('gray');
-      setDescription('Have you selected a feature?');
+      setParkingAllowedText('Information saknas');
+      setParkingAllowedTextColor(notSelectedTextColor);
+      setDescription('Se till att du markerar en feature');
+      setHorizontalBarColor(`${notSelectedTextColor}bb`);
 
       return;
     }
@@ -84,10 +94,12 @@ export const TopBar = () => {
       setParkingAllowedText(parkingText.allowed);
       setParkingAllowedTextColor(allowedTextColor);
       setDescription(parkingUntilText);
+      setHorizontalBarColor('#0085FF');
     } else {
       setParkingAllowedText(parkingText.notAllowed);
       setParkingAllowedTextColor(unAllowedColor);
       setDescription(parkingUntilText);
+      setHorizontalBarColor(unAllowedColor);
     }
   }, [selectedFeatureId, selectedFeatureIsAllowed]);
 
@@ -110,22 +122,28 @@ export const TopBar = () => {
       </View>
       <Animatable.View ref={c => (animatedHolder = c)}>
         <Animatable.View style={styles.statusBar}>
-          {selectedFeatureId && (
+          {/* {selectedFeatureId && (
             <Image
               style={styles.parkingSign}
               source={parkingSignSelector(selectedFeatureIsAllowed)}
             />
-          )}
-          <View style={styles.textHolder}>
-            <Text style={parkingTextCombined}>{parkingAllowedText}</Text>
-            <Text style={parkingUntilTextCombined}>{description}</Text>
-            {selectedFeatureId && (
-              <View style={styles.showDetailsHolder}>
-                <Image />
-                <Text>Visa detaljer</Text>
-              </View>
-            )}
+          )} */}
+          <View>
+            <View style={styles.textHolder}>
+              <Text style={parkingTextCombined}>{parkingAllowedText}</Text>
+              <Text style={parkingUntilTextCombined}>{description}</Text>
+              {selectedFeatureId && (
+                <View style={styles.showDetailsHolder}>
+                  <Image />
+                  <Text style={styles.showDetailsText}>Visa detaljer</Text>
+                </View>
+              )}
+            </View>
           </View>
+          <View
+            style={horizontalColoredBarCombined}
+            ref={c => (horizontalColoredBar = c)}
+          />
         </Animatable.View>
         {selectedFeatureId && (
           <Animatable.View
@@ -168,14 +186,9 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   statusBar: {
-    height: 100,
-    width: '100%',
-    // zIndex: 0,
-    backgroundColor: '#fafafa',
+    // backgroundColor: '#fafafa',
     display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 15,
+    flexDirection: 'column',
   },
   parkingSign: {
     width: 65,
@@ -184,18 +197,18 @@ const styles = StyleSheet.create({
   textHolder: {
     display: 'flex',
     flexDirection: 'column',
-    // alignItems: 'flex-start',
-    // justifyContent: 'flex-start'
-    paddingLeft: 10,
-    height: '100%',
-    marginTop: 10,
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    padding: 10,
+    height: 80,
+    width: '100%',
   },
   parkingAllowedText: {
     fontWeight: '700',
-    fontSize: 20,
+    fontSize: 24,
   },
   parkingUntilText: {
-    marginTop: 5,
+    // marginTop: 5,
   },
   addressBar: {
     height: 30,
@@ -208,5 +221,12 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 15,
     fontWeight: '600',
+  },
+  showDetailsText: {
+    color: '#0085FF',
+  },
+  horizontalColoredBar: {
+    height: 25,
+    width: '100%',
   },
 });

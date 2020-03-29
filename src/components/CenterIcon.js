@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Image } from 'react-native';
+import React from 'react';
+import { StyleSheet, Image, View } from 'react-native';
+import { useSelector } from 'react-redux';
 
 const originalIconSize = { x: 64, y: 98 }; /* x, y */
 const scale = 0.5;
@@ -7,6 +8,23 @@ const iconSize = {
   x: originalIconSize.x * scale,
   y: originalIconSize.y * scale,
 };
+
+const markerUrls = {
+  active: require('../../lib/icons/marker-blue.png'),
+  nonActive: require('../../lib/icons/marker-gray.png'),
+};
+
+export const CenterIcon = () => {
+  const selectedFeatureId = useSelector(store => store.ui.selectedFeature.id);
+
+  return (
+    <Image
+      style={styles.marker}
+      source={selectedFeatureId ? markerUrls.active : markerUrls.nonActive}
+    />
+  );
+};
+
 const styles = StyleSheet.create({
   marker: {
     position: 'absolute',
@@ -17,12 +35,3 @@ const styles = StyleSheet.create({
     transform: [{ translateX: -(iconSize.x / 2) }, { translateY: -iconSize.y }],
   },
 });
-
-export const CenterIcon = () => {
-  return (
-    <Image
-      style={styles.marker}
-      source={require('../../lib/icons/64px-Map_marker.svg.png')}
-    />
-  );
-};

@@ -3,39 +3,75 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useSelector } from 'react-redux';
 import * as Animatable from 'react-native-animatable';
 
+const notSelectedTextColor = '#777777';
+
 export const BottomBar = () => {
+  const userHoldsDown = useSelector(
+    store => store.ui.interactions.userHoldsDown,
+  );
   const slideDuration = useSelector(store => store.ui.animations.slideDuration);
   const fetchingFeatures = useSelector(store => store.ui.api.fetchingFeatures);
   const fetchingFeaturesMessage = useSelector(
     store => store.ui.api.fetchingFeaturesMessage,
   );
+  const unAllowedColor = useSelector(store => store.ui.feature.unAllowedColor);
 
-  let bottomBar;
+  const selectedFeatureIsAllowed = useSelector(
+    store => store.ui.selectedFeature.allowed,
+  );
+  const selectedFeatureId = useSelector(store => store.ui.selectedFeature.id);
 
-  // useEffect(() => {
-  //   if (userHoldsDown) {
-  //     bottomBar.slideOutDown(slideDuration);
-  //   } else {
-  //     bottomBar.slideInUp(slideDuration);
-  //   }
-  // }, [userHoldsDown]);
+  let horizontalColoredBarBottom;
+  let loadingIndicatorHolder;
+
+  const [horizontalBarBottomColor, setHorizontalBarBottomColor] = useState('');
+  const horizontalColoredBarBottomStyle = styles.horizontalColoredBarBottom;
+  const horizontalColoredBarBottomCombined = StyleSheet.flatten([
+    { backgroundColor: horizontalBarBottomColor },
+    horizontalColoredBarBottomStyle,
+  ]);
+
+  useEffect(() => {
+    if (userHoldsDown) {
+      horizontalColoredBarBottom.slideOutDown(slideDuration);
+    } else {
+      horizontalColoredBarBottom.slideInUp(slideDuration);
+    }
+  }, [userHoldsDown]);
+
+  useEffect(() => {
+    if (!selectedFeatureId) {
+      setHorizontalBarBottomColor(`${notSelectedTextColor}bb`);
+      return;
+    }
+    if (selectedFeatureIsAllowed) {
+      setHorizontalBarBottomColor('#0085FF');
+    } else {
+      setHorizontalBarBottomColor(unAllowedColor);
+    }
+  }, [selectedFeatureId, selectedFeatureIsAllowed]);
 
   useEffect(() => {
     if (!fetchingFeatures) {
-      bottomBar.slideOutDown(slideDuration);
+      loadingIndicatorHolder.slideOutDown(slideDuration);
     } else {
-      bottomBar.slideInUp(slideDuration);
+      loadingIndicatorHolder.slideInUp(slideDuration);
     }
   }, [fetchingFeatures]);
 
   return (
-    <Animatable.View style={styles.bottomBar} ref={c => (bottomBar = c)}>
-      <View style={styles.loadingIndicatorHolder}>
+    <View style={styles.bottomBar}>
+      <Animatable.View
+        style={styles.loadingIndicatorHolder}
+        ref={c => (loadingIndicatorHolder = c)}>
         <Text style={styles.loadingIndicatorText}>
           {fetchingFeaturesMessage}
         </Text>
-      </View>
-    </Animatable.View>
+      </Animatable.View>
+      <Animatable.View
+        style={horizontalColoredBarBottomCombined}
+        ref={c => (horizontalColoredBarBottom = c)}></Animatable.View>
+    </View>
   );
 };
 
@@ -45,29 +81,24 @@ const styles = StyleSheet.create({
     bottom: 0,
     width: '100%',
     height: 100,
-    borderWidth: 0,
 
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    padding: 10,
-  },
-  description: {
-    width: '100%',
-    textAlign: 'center',
-  },
-  address: {
-    fontWeight: '700',
-    textAlign: 'center',
-    marginBottom: 10,
+    justifyContent: 'space-between',
   },
   loadingIndicatorHolder: {
     backgroundColor: '#555555aa',
     // width: '80%',
     padding: 5,
+    // marginBottom: 100,
   },
   loadingIndicatorText: {
     color: 'white',
     textAlign: 'center',
+  },
+  horizontalColoredBarBottom: {
+    height: 35,
+    width: '100%',
   },
 });

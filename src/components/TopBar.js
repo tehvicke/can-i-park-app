@@ -13,19 +13,6 @@ const notSelectedTextColor = '#777777';
 
 const parkingUntilText = 'Fram till onsdag 13/4 kl 17.00';
 
-const parkingSigns = {
-  allowed: require('../../lib/icons/e19-1.png'),
-  notAllowed: require('../../lib/icons/c35-1.png'),
-};
-
-const parkingSignSelector = allowed => {
-  if (allowed) {
-    return parkingSigns.allowed;
-  } else {
-    return parkingSigns.notAllowed;
-  }
-};
-
 export const TopBar = () => {
   const userHoldsDown = useSelector(
     store => store.ui.interactions.userHoldsDown,
@@ -73,7 +60,6 @@ export const TopBar = () => {
   useEffect(() => {
     if (userHoldsDown) {
       animatedHolder.slideOutUp(slideDuration);
-
       if (selectedFeatureId) addressBar.slideOutUp(slideDuration);
     } else {
       animatedHolder.slideInDown(slideDuration);
@@ -85,7 +71,7 @@ export const TopBar = () => {
     if (!selectedFeatureId) {
       setParkingAllowedText('Information saknas');
       setParkingAllowedTextColor(notSelectedTextColor);
-      setDescription('Se till att du markerar en feature');
+      setDescription('Ingen angivelse är vald');
       setHorizontalBarColor(`${notSelectedTextColor}bb`);
 
       return;
@@ -122,12 +108,6 @@ export const TopBar = () => {
       </View>
       <Animatable.View ref={c => (animatedHolder = c)}>
         <Animatable.View style={styles.statusBar}>
-          {/* {selectedFeatureId && (
-            <Image
-              style={styles.parkingSign}
-              source={parkingSignSelector(selectedFeatureIsAllowed)}
-            />
-          )} */}
           <View>
             <View style={styles.textHolder}>
               <Text style={parkingTextCombined}>{parkingAllowedText}</Text>
@@ -200,12 +180,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     justifyContent: 'center',
     padding: 10,
-    height: 80,
+    height: 70,
     width: '100%',
   },
   parkingAllowedText: {
     fontWeight: '700',
-    fontSize: 24,
+    fontSize: 22,
   },
   parkingUntilText: {
     // marginTop: 5,

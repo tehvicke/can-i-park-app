@@ -64,7 +64,7 @@ export const BottomBar = () => {
       <Animatable.View
         style={styles.loadingIndicatorHolder}
         ref={c => (loadingIndicatorHolder = c)}>
-        <ActivityIndicator color="white" size="small" />
+        <ActivityIndicator color="white" />
         <Text style={styles.loadingIndicatorText}>
           {fetchingFeaturesMessage}
         </Text>

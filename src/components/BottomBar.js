@@ -15,6 +15,7 @@ export const BottomBar = () => {
     store => store.ui.api.fetchingFeaturesMessage,
   );
   const unAllowedColor = useSelector(store => store.ui.feature.unAllowedColor);
+  const allowedColor = useSelector(store => store.ui.feature.allowedColor);
 
   const selectedFeatureIsAllowed = useSelector(
     store => store.ui.selectedFeature.allowed,

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
 import { useSelector } from 'react-redux';
 import * as Animatable from 'react-native-animatable';
 
@@ -64,6 +64,7 @@ export const BottomBar = () => {
       <Animatable.View
         style={styles.loadingIndicatorHolder}
         ref={c => (loadingIndicatorHolder = c)}>
+        <ActivityIndicator color="white" size="small" />
         <Text style={styles.loadingIndicatorText}>
           {fetchingFeaturesMessage}
         </Text>
@@ -88,10 +89,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   loadingIndicatorHolder: {
-    backgroundColor: '#555555aa',
-    // width: '80%',
-    padding: 5,
-    // marginBottom: 100,
+    backgroundColor: '#55555555',
+    padding: 10,
   },
   loadingIndicatorText: {
     color: 'white',

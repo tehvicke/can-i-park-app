@@ -187,9 +187,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     fontSize: 22,
   },
-  parkingUntilText: {
-    // marginTop: 5,
-  },
+  parkingUntilText: {},
   addressBar: {
     height: 30,
     backgroundColor: '#555555aa',

@@ -141,13 +141,16 @@ export const MapBackground = () => {
         dispatch(parking.actions.setSelectedFeature({}));
         return;
       }
+      let selectedFeatureCandidate = relevantFeaturesAtPosition[0];
       relevantFeaturesAtPosition.forEach(feature => {
-        dispatch(ui.actions.setSelectedFeatureId(feature.id));
-        dispatch(parking.actions.setSelectedFeature(feature));
-
-        console.log(feature.properties);
-        return;
+        if (!feature.properties.allowed) {
+          selectedFeatureCandidate = feature;
+        }
       });
+      dispatch(ui.actions.setSelectedFeatureId(selectedFeatureCandidate.id));
+      dispatch(parking.actions.setSelectedFeature(selectedFeatureCandidate));
+
+      console.log(selectedFeatureCandidate.properties);
     };
     updateSelectedFeature(map);
   }, [shouldUpdateSelectedFeature]);

@@ -3,6 +3,7 @@ import MapboxGL from '@react-native-mapbox-gl/maps';
 import { View } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { ui } from '../reducers/ui.js';
+import { parking } from '../reducers/parking.js';
 
 import moment from 'moment';
 
@@ -47,6 +48,7 @@ export const DrawFeature = ({ feature }) => {
   } else {
     color = unAllowedColor;
     layerIndex = 150;
+    dispatch(parking.actions.setFeatureIsNotAllowed(feature));
   }
 
   const [opacity, setOpacity] = useState(unSelectedOpacity);

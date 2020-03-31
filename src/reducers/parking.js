@@ -26,6 +26,7 @@ export const parking = createSlice({
       action.payload.map(newFeature => {
         let featureExists = false;
 
+        newFeature.properties.allowed = true;
         console.log(newFeature);
 
         state.features.map(existingFeature => {
@@ -43,6 +44,14 @@ export const parking = createSlice({
     },
     setSelectedFeature: (state, action) => {
       state.selectedFeature = action.payload;
+    },
+    setFeatureIsNotAllowed: (state, action) => {
+      console.log('SETFEAT');
+      state.features.find(feature => {
+        if (action.payload.id === feature.id) {
+          feature.properties.allowed = false;
+        }
+      });
     },
   },
 });

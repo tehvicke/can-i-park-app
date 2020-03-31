@@ -38,28 +38,15 @@ export const DrawFeature = ({ feature }) => {
   } else {
     allowed = true;
   }
-  console.log(
-    'Start: ',
-    feature.properties.parkingAllowedTime.start,
-    ', Now: ',
-    testDate.format(),
-    ', End: ',
-    feature.properties.parkingAllowedTime.end,
-  );
-  console.log(
-    'Start < Now',
-    moment(feature.properties.parkingAllowedTime.start) < testDate,
-    ', End > Now',
-    moment(feature.properties.parkingAllowedTime.end) > testDate,
-  );
-
-  console.log(allowed);
 
   let color;
+  let layerIndex;
   if (allowed) {
     color = allowedColor;
+    layerIndex = 100;
   } else {
     color = unAllowedColor;
+    layerIndex = 150;
   }
 
   const [opacity, setOpacity] = useState(unSelectedOpacity);
@@ -83,6 +70,7 @@ export const DrawFeature = ({ feature }) => {
             lineWidth: width,
             lineOpacity: opacity,
           }}
+          layerIndex={layerIndex}
         />
       </MapboxGL.ShapeSource>
     </View>

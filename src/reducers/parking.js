@@ -1,16 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { useDispatch } from 'react-redux';
-import { ui } from './ui.js';
-
-import data from '../testdata.json';
 
 export const parking = createSlice({
   name: 'parking',
   initialState: {
     serverInfo: {
       url:
-        'https://can-i-park-here-server.herokuapp.com/' /* http://localhost:8080/ https://can-i-park-here-server.herokuapp.com/ */,
+        // 'https://can-i-park-here-server.herokuapp.com/api/v2/' /* http://192.168.1.108:8080/ http://localhost:8080/ https://can-i-park-here-server.herokuapp.com/ */,
+        'http://192.168.1.108:8080/api/v2/',
       radius: 100,
+    },
+    user: {
+      vehicleType: 'CAR',
     },
     position: undefined,
     shouldFetchFeatures: false,
@@ -22,8 +22,12 @@ export const parking = createSlice({
       state.position = action.payload;
     },
     updateFeatures: (state, action) => {
-      action.payload.features.map(newFeature => {
+      console.log();
+      action.payload.map(newFeature => {
         let featureExists = false;
+
+        console.log(newFeature);
+
         state.features.map(existingFeature => {
           if (newFeature.id === existingFeature.id) {
             featureExists = true;

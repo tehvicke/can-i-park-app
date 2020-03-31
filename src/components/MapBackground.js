@@ -101,7 +101,8 @@ export const MapBackground = () => {
         `${serverUrl}?lat=${position[1]}&long=${position[0]}&radius=${radius}`,
       )
       .then(response => {
-        dispatch(parking.actions.updateFeatures(response.data, dispatch));
+        console.log(response.data);
+        dispatch(parking.actions.updateFeatures(response.data));
 
         console.log('Fetch successful for ', position);
         dispatch(ui.actions.setFetchingFeatures(false));

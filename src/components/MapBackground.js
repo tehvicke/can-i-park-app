@@ -12,6 +12,8 @@ import { FeatureRenderer } from './FeatureRenderer.js';
 
 import { MAPBOX_API_KEY } from 'react-native-dotenv';
 
+import moment from 'moment';
+
 const minDistanceForFetch = 25;
 
 /* Use default public token only - so OK to include here I guess... */
@@ -35,8 +37,9 @@ const handleOnRegionDidChange = async (map, position, dispatch) => {
   const newPos = await map.getCenter();
   dispatch(parking.actions.updatePosition(newPos));
 
-  // if (getDistance(newPos, position) > minDistanceForFetch) /* TODO: Fix this calculation as it's very irrational now... (due to multiple pos update) */
-  dispatch(parking.actions.setShouldFetchFeatures());
+  if (getDistance(newPos, position) > minDistanceForFetch)
+    /* TODO: Fix this calculation as it's very irrational now... (due to multiple pos update) */
+    dispatch(parking.actions.setShouldFetchFeatures());
 };
 
 const handleOnRegionWillChange = dispatch => {
@@ -59,6 +62,7 @@ export const MapBackground = () => {
   const zoomLevel = useSelector(store => store.ui.map.zoomLevel);
   const radius = useSelector(store => store.parking.serverInfo.radius);
   const serverUrl = useSelector(store => store.parking.serverInfo.url);
+  const timeNow = useSelector(store => store.parking.user.time);
 
   const shouldUpdateSelectedFeature = useSelector(
     store => store.ui.selectedFeature.shouldUpdate,
@@ -90,6 +94,7 @@ export const MapBackground = () => {
     if (position === undefined) {
       return;
     }
+    console.log(timeNow);
     console.log('Starting fetch for ', position);
     dispatch(ui.actions.setFetchingFeatures(true));
     dispatch(
@@ -98,10 +103,10 @@ export const MapBackground = () => {
 
     axios
       .get(
-        `${serverUrl}?lat=${position[1]}&long=${position[0]}&radius=${radius}`,
+        `${serverUrl}?lat=${position[1]}&long=${position[0]}&radius=${radius}&time=${timeNow}`,
       )
       .then(response => {
-        console.log(response.data);
+        // console.log(response.data);
         dispatch(parking.actions.updateFeatures(response.data));
 
         console.log('Fetch successful for ', position);
@@ -172,8 +177,8 @@ export const MapBackground = () => {
         centerCoordinate={position}
         animationDuration={0}
       />
-      <MapboxGL.UserLocation animated={true} />
       <FeatureRenderer />
+      <MapboxGL.UserLocation animated={true} />
     </MapboxGL.MapView>
   );
 };

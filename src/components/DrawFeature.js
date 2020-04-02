@@ -7,8 +7,6 @@ import { parking } from '../reducers/parking.js';
 
 import moment from 'moment';
 
-const testDate = moment();
-
 export const DrawFeature = ({ feature }) => {
   /* UI stuff */
   const isSelectedFeature =
@@ -23,6 +21,8 @@ export const DrawFeature = ({ feature }) => {
     store => store.ui.feature.selectedOpacity,
   );
 
+  const usersTime = moment(useSelector(store => store.parking.user.time));
+
   const userVehicleType = useSelector(store => store.parking.user.vehicleType);
 
   const dispatch = useDispatch();
@@ -32,13 +32,24 @@ export const DrawFeature = ({ feature }) => {
     /* If the vehicle type is not the same then it's not valid (Car cannot park on MC parking. Current implementation does not support other vehicles than a car!*/
     allowed = false;
   } else if (
-    moment(feature.properties.parkingAllowedTime.start) > testDate ||
-    moment(feature.properties.parkingAllowedTime.end) < testDate
+    moment(feature.properties.parkingAllowedTime.start) > usersTime ||
+    moment(feature.properties.parkingAllowedTime.end) < usersTime
   ) {
     allowed = false;
   } else {
     allowed = true;
   }
+
+  console.log(
+    `ID: ${feature.id}, Start: ${
+      feature.properties.parkingAllowedTime.start
+    }, Now: ${usersTime.format()}, End: ${
+      feature.properties.parkingAllowedTime.end
+    }, Start > Now: ${moment(feature.properties.parkingAllowedTime.start) >
+      usersTime}, End < Now: ${moment(
+      feature.properties.parkingAllowedTime.end,
+    ) < usersTime}, Allowed: ${allowed}`,
+  );
 
   let color;
   let layerIndex;

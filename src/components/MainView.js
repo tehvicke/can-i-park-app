@@ -31,7 +31,7 @@ const handleOnPressOut = dispatch => {
   // dispatch(ui.actions.setUserHoldsDown(false));
 };
 export const MainView = () => {
-  dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   return (
     <View style={styles.page}>

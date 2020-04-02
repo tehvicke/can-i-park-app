@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import moment from 'moment';
 
 export const parking = createSlice({
   name: 'parking',
@@ -11,6 +12,7 @@ export const parking = createSlice({
     },
     user: {
       vehicleType: 'CAR',
+      time: moment().format(),
     },
     position: undefined,
     shouldFetchFeatures: false,
@@ -22,12 +24,11 @@ export const parking = createSlice({
       state.position = action.payload;
     },
     updateFeatures: (state, action) => {
-      console.log();
       action.payload.map(newFeature => {
         let featureExists = false;
 
         newFeature.properties.allowed = true;
-        console.log(newFeature);
+        // console.log(newFeature);
 
         state.features.map(existingFeature => {
           if (newFeature.id === existingFeature.id) {
@@ -46,7 +47,6 @@ export const parking = createSlice({
       state.selectedFeature = action.payload;
     },
     setFeatureIsNotAllowed: (state, action) => {
-      console.log('SETFEAT');
       state.features.find(feature => {
         if (action.payload.id === feature.id) {
           feature.properties.allowed = false;

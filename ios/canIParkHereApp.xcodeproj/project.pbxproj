@@ -435,7 +435,7 @@
 			baseConfigurationReference = 327FF2E2E4A8CBB1270F92F8 /* Pods-canIParkHereApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 763J8JR769;
 				HEADER_SEARCH_PATHS = (
@@ -495,7 +495,7 @@
 			baseConfigurationReference = 19BCBC8A7C1E8B77F6F40ED1 /* Pods-canIParkHereApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 763J8JR769;
 				INFOPLIST_FILE = canIParkHereApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;

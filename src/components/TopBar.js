@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as Animatable from 'react-native-animatable';
 
 import moment from 'moment';
+import 'moment/locale/sv';
 
 /* Various constants that should be replaced / added to the global state */
 const parkingText = {
@@ -13,13 +14,17 @@ const parkingText = {
 const allowedTextColor = '#005596';
 const notSelectedTextColor = '#777777';
 
-const parkingUntilText = 'Fram till onsdag 13/4 kl 17.00';
+const parkingAllowedUntil = (feature, locale) => {
+  if (!feature || !feature.properties) return;
 
-const parkingAllowedUntil = feature => {
-  // console.log(feature);
-  if (feature.allowed) {
-    console.log(feature.parkingAllowedTime);
+  moment.locale('sv');
+  let time;
+  if (feature.properties.allowed) {
+    time = moment(feature.properties.parkingAllowedTime.end);
+  } else {
+    time = moment(feature.properties.parkingAllowedTime.start).add(7, 'd');
   }
+  return `Fram tills ${time.calendar().toLowerCase()} (${time.fromNow()})`;
 };
 
 export const TopBar = () => {
@@ -122,7 +127,9 @@ export const TopBar = () => {
           <View>
             <View style={styles.textHolder}>
               <Text style={parkingTextCombined}>{parkingAllowedText}</Text>
-              <Text style={parkingUntilTextCombined}>{description}</Text>
+              <Text style={parkingUntilTextCombined}>
+                {parkingAllowedUntil(selectedFeature, 'sv')}
+              </Text>
               {selectedFeatureId && (
                 <View style={styles.showDetailsHolder}>
                   <Image />

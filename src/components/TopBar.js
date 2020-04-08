@@ -16,11 +16,11 @@ const parkingText = {
 const allowedTextColor = '#005596';
 const notSelectedTextColor = '#777777';
 
-const parkingAllowedUntil = (feature, locale, usersTime) => {
+const parkingAllowedUntil = (feature, usersTime, usersLocale) => {
   if (!feature || !feature.properties) return;
 
-  moment.locale('sv');
   let time;
+  moment.locale(usersLocale);
   if (
     feature.properties.allowed &&
     feature.properties.type == 'TIME_RESTRICTED'
@@ -31,7 +31,9 @@ const parkingAllowedUntil = (feature, locale, usersTime) => {
   } else {
     time = moment(feature.properties.parkingAllowedTime.start).add(7, 'd');
   }
-  return `Fram tills ${time.calendar().toLowerCase()} (${time.fromNow()})`;
+  return `Fram tills ${time.calendar().toLowerCase()} (${time.from(
+    usersTime,
+  )})`;
 };
 
 export const TopBar = () => {
@@ -42,6 +44,8 @@ export const TopBar = () => {
   const unAllowedColor = useSelector(store => store.ui.feature.unAllowedColor);
   const allowedColor = useSelector(store => store.ui.feature.allowedColor);
   const selectedFeature = useSelector(store => store.parking.selectedFeature);
+  const usersTime = useSelector(store => store.parking.user.time);
+  const usersLocale = useSelector(store => store.parking.user.locale);
 
   const [parkingAllowedText, setParkingAllowedText] = useState('');
   const [parkingAllowedTextColor, setParkingAllowedTextColor] = useState(
@@ -112,7 +116,9 @@ export const TopBar = () => {
 
   useEffect(() => {
     if (selectedFeature && selectedFeature.properties) {
-      setParkingUntilText(parkingAllowedUntil(selectedFeature, 'sv'));
+      setParkingUntilText(
+        parkingAllowedUntil(selectedFeature, usersTime, usersLocale),
+      );
       setParkingAddress(selectedFeature.properties.address);
     } else {
       setParkingAddress('');

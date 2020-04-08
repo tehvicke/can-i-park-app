@@ -14,7 +14,7 @@ export const parking = createSlice({
       vehicleType: 'CAR',
       time: moment().format(),
       // time: moment('2020-04-08T12:00:00+02:00').format(),
-      locale: 'se',
+      locale: 'sv',
     },
     position: undefined,
     shouldFetchFeatures: false,

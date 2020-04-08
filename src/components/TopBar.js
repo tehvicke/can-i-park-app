@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Image } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Animatable from 'react-native-animatable';
 
-import moment from 'moment';
+import moment, { relativeTimeRounding } from 'moment';
 import 'moment/locale/sv';
 
 /* Various constants that should be replaced / added to the global state */
@@ -99,7 +99,7 @@ export const TopBar = () => {
     }
     if (selectedFeatureIsAllowed) {
       setParkingAllowedText(parkingText.allowed);
-      setParkingAllowedTextColor(allowedTextColor);
+      setParkingAllowedTextColor('#005596');
       setHorizontalBarColor(allowedColor);
     } else {
       setParkingAllowedText(parkingText.notAllowed);
@@ -133,9 +133,14 @@ export const TopBar = () => {
               <Text style={parkingTextCombined}>{parkingAllowedText}</Text>
               <Text style={parkingUntilTextCombined}>{parkingUntilText}</Text>
               {selectedFeatureId && (
-                <View style={styles.showDetailsHolder}>
-                  <Image />
-                  <Text style={styles.showDetailsText}>Visa detaljer</Text>
+                <View style={styles.showDetailsWrapper}>
+                  <View style={styles.showDetailsHolder}>
+                    <Image
+                      style={styles.showDetailsArrow}
+                      source={require('../../lib/icons/moreinfo-arrow.png')}
+                    />
+                    <Text style={styles.showDetailsText}>Visa detaljer</Text>
+                  </View>
                 </View>
               )}
             </View>
@@ -220,8 +225,29 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: '600',
   },
+  showDetailsWrapper: {
+    width: '100%',
+    display: 'flex',
+    height: 15,
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+  },
+  showDetailsHolder: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  showDetailsArrow: {
+    width: 12,
+    resizeMode: 'contain',
+    marginRight: 4,
+    margin: 0,
+    padding: 0,
+  },
   showDetailsText: {
     color: '#0085FF',
+    margin: 0,
+    padding: 0,
   },
   horizontalColoredBar: {
     height: 25,

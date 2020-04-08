@@ -46,7 +46,7 @@ export const BottomBar = () => {
       return;
     }
     if (selectedFeatureIsAllowed) {
-      setHorizontalBarBottomColor('#0085FF');
+      setHorizontalBarBottomColor(allowedColor);
     } else {
       setHorizontalBarBottomColor(unAllowedColor);
     }
@@ -72,7 +72,8 @@ export const BottomBar = () => {
       </Animatable.View>
       <Animatable.View
         style={horizontalColoredBarBottomCombined}
-        ref={c => (horizontalColoredBarBottom = c)}></Animatable.View>
+        ref={c => (horizontalColoredBarBottom = c)}
+      />
     </View>
   );
 };

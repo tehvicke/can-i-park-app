@@ -3,6 +3,8 @@ import { StyleSheet, View, Text, Image } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Animatable from 'react-native-animatable';
 
+import moment from 'moment';
+
 /* Various constants that should be replaced / added to the global state */
 const parkingText = {
   allowed: 'Gatuparkering tillåten',
@@ -13,12 +15,20 @@ const notSelectedTextColor = '#777777';
 
 const parkingUntilText = 'Fram till onsdag 13/4 kl 17.00';
 
+const parkingAllowedUntil = feature => {
+  // console.log(feature);
+  if (feature.allowed) {
+    console.log(feature.parkingAllowedTime);
+  }
+};
+
 export const TopBar = () => {
   const userHoldsDown = useSelector(
     store => store.ui.interactions.userHoldsDown,
   );
   const slideDuration = useSelector(store => store.ui.animations.slideDuration);
   const unAllowedColor = useSelector(store => store.ui.feature.unAllowedColor);
+  const allowedColor = useSelector(store => store.ui.feature.allowedColor);
   const selectedFeature = useSelector(store => store.parking.selectedFeature);
 
   const [parkingAllowedText, setParkingAllowedText] = useState('');
@@ -26,6 +36,7 @@ export const TopBar = () => {
     'white',
   );
   const [horizontalBarColor, setHorizontalBarColor] = useState('');
+
   const [parkingAddress, setParkingAddress] = useState('');
 
   const [description, setDescription] = useState(parkingUntilText);
@@ -80,7 +91,8 @@ export const TopBar = () => {
       setParkingAllowedText(parkingText.allowed);
       setParkingAllowedTextColor(allowedTextColor);
       setDescription(parkingUntilText);
-      setHorizontalBarColor('#0085FF');
+      // setHorizontalBarColor('#0085FF');
+      setHorizontalBarColor(allowedColor);
     } else {
       setParkingAllowedText(parkingText.notAllowed);
       setParkingAllowedTextColor(unAllowedColor);
@@ -90,8 +102,8 @@ export const TopBar = () => {
   }, [selectedFeatureId, selectedFeatureIsAllowed]);
 
   useEffect(() => {
-    if (selectedFeature && selectedFeature.properties) {
-      setParkingAddress(selectedFeature.properties.ADDRESS);
+    if (selectedFeature) {
+      setParkingAddress(selectedFeature.properties.address);
     } else {
       setParkingAddress('');
     }

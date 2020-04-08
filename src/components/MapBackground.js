@@ -12,8 +12,6 @@ import { FeatureRenderer } from './FeatureRenderer.js';
 
 import { MAPBOX_API_KEY } from 'react-native-dotenv';
 
-import moment from 'moment';
-
 const minDistanceForFetch = 25;
 
 /* Use default public token only - so OK to include here I guess... */
@@ -103,7 +101,9 @@ export const MapBackground = () => {
 
     axios
       .get(
-        `${serverUrl}?lat=${position[1]}&long=${position[0]}&radius=${radius}&time=${timeNow}`,
+        `${serverUrl}?lat=${position[1]}&long=${
+          position[0]
+        }&radius=${radius}&time=${timeNow}`,
       )
       .then(response => {
         // console.log(response.data);

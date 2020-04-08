@@ -40,16 +40,16 @@ export const DrawFeature = ({ feature }) => {
     allowed = true;
   }
 
-  console.log(
-    `ID: ${feature.id}, Start: ${
-      feature.properties.parkingAllowedTime.start
-    }, Now: ${usersTime.format()}, End: ${
-      feature.properties.parkingAllowedTime.end
-    }, Start > Now: ${moment(feature.properties.parkingAllowedTime.start) >
-      usersTime}, End < Now: ${moment(
-      feature.properties.parkingAllowedTime.end,
-    ) < usersTime}, Allowed: ${allowed}`,
-  );
+  // console.log(
+  //   `ID: ${feature.id}, Start: ${
+  //     feature.properties.parkingAllowedTime.start
+  //   }, Now: ${usersTime.format()}, End: ${
+  //     feature.properties.parkingAllowedTime.end
+  //   }, Start > Now: ${moment(feature.properties.parkingAllowedTime.start) >
+  //     usersTime}, End < Now: ${moment(
+  //     feature.properties.parkingAllowedTime.end,
+  //   ) < usersTime}, Allowed: ${allowed}`,
+  // );
 
   let color;
   let layerIndex;

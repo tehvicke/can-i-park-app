@@ -91,7 +91,6 @@ export const TopBar = () => {
       setParkingAllowedText(parkingText.allowed);
       setParkingAllowedTextColor(allowedTextColor);
       setDescription(parkingUntilText);
-      // setHorizontalBarColor('#0085FF');
       setHorizontalBarColor(allowedColor);
     } else {
       setParkingAllowedText(parkingText.notAllowed);
@@ -102,7 +101,7 @@ export const TopBar = () => {
   }, [selectedFeatureId, selectedFeatureIsAllowed]);
 
   useEffect(() => {
-    if (selectedFeature) {
+    if (selectedFeature && selectedFeature.properties) {
       setParkingAddress(selectedFeature.properties.address);
     } else {
       setParkingAddress('');

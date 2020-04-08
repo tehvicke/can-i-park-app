@@ -3,6 +3,8 @@ import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Animatable from 'react-native-animatable';
 
+import { ui } from '../reducers/ui.js';
+
 import moment from 'moment';
 import 'moment/locale/sv';
 
@@ -37,6 +39,7 @@ const parkingAllowedUntil = (feature, usersTime, usersLocale) => {
 };
 
 export const TopBar = () => {
+  const dispatch = useDispatch();
   const userHoldsDown = useSelector(
     store => store.ui.interactions.userHoldsDown,
   );
@@ -55,7 +58,7 @@ export const TopBar = () => {
   const [parkingAddress, setParkingAddress] = useState('');
   const [parkingUntilText, setParkingUntilText] = useState('');
 
-  const [showDetails, setShowDetails] = useState(false);
+  const showDetails = useSelector(store => store.ui.interactions.showDetails);
 
   const selectedFeatureIsAllowed = useSelector(
     store => store.ui.selectedFeature.allowed,
@@ -82,6 +85,11 @@ export const TopBar = () => {
   const horizontalColoredBarCombined = StyleSheet.flatten([
     { backgroundColor: horizontalBarColor },
     horizontalColoredBarStyle,
+  ]);
+  const showDetailsArrow = styles.showDetailsArrow;
+  const showDetailsArrowCombined = StyleSheet.flatten([
+    { transform: [{ rotate: `${showDetails ? '0' : '180'}deg` }] },
+    showDetailsArrow,
   ]);
 
   useEffect(() => {
@@ -145,10 +153,10 @@ export const TopBar = () => {
                   <TouchableOpacity
                     style={styles.showDetailsHolder}
                     onPress={() => {
-                      setShowDetails(!showDetails);
+                      dispatch(ui.actions.setShowDetails(!showDetails));
                     }}>
                     <Image
-                      style={styles.showDetailsArrow}
+                      style={showDetailsArrowCombined}
                       source={require('../../lib/icons/moreinfo-arrow.png')}
                     />
                     <Text style={styles.showDetailsText}>Visa detaljer</Text>

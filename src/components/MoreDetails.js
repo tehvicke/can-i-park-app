@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Image } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Animatable from 'react-native-animatable';
 
-export const MoreDetails = ({ showDetails }) => {
+export const MoreDetails = () => {
   const allSelectedFeatures = useSelector(
     store => store.parking.allSelectedFeatures,
   );

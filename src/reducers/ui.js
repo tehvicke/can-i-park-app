@@ -21,6 +21,7 @@ export const ui = createSlice({
     },
     interactions: {
       userHoldsDown: false,
+      showDetails: false,
     },
   },
   reducers: {
@@ -54,6 +55,9 @@ export const ui = createSlice({
     },
     setFetchingFeaturesMessage: (state, action) => {
       state.api.fetchingFeaturesMessage = action.payload;
+    },
+    setShowDetails: (state, action) => {
+      state.interactions.showDetails = action.payload;
     },
   },
 });

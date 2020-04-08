@@ -42,6 +42,7 @@ const handleOnRegionDidChange = async (map, position, dispatch) => {
 
 const handleOnRegionWillChange = dispatch => {
   dispatch(ui.actions.setUserHoldsDown(true));
+  dispatch(ui.actions.setShowDetails(false));
 };
 
 const handleOnDidFinishRenderingFrame = async (map, dispatch) => {

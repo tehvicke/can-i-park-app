@@ -19,8 +19,13 @@ const parkingAllowedUntil = (feature, locale) => {
 
   moment.locale('sv');
   let time;
-  if (feature.properties.allowed) {
+  if (
+    feature.properties.allowed &&
+    feature.properties.type == 'TIME_RESTRICTED'
+  ) {
     time = moment(feature.properties.parkingAllowedTime.end);
+  } else if (feature.properties.type == 'ALWAYS_RESTRICTED') {
+    return feature.properties.typeDesc;
   } else {
     time = moment(feature.properties.parkingAllowedTime.start).add(7, 'd');
   }
@@ -44,7 +49,7 @@ export const TopBar = () => {
 
   const [parkingAddress, setParkingAddress] = useState('');
 
-  const [description, setDescription] = useState(parkingUntilText);
+  const [parkingUntilText, setParkingUntilText] = useState('');
 
   const selectedFeatureIsAllowed = useSelector(
     store => store.ui.selectedFeature.allowed,
@@ -87,7 +92,7 @@ export const TopBar = () => {
     if (!selectedFeatureId) {
       setParkingAllowedText('Information saknas');
       setParkingAllowedTextColor(notSelectedTextColor);
-      setDescription('Ingen angivelse är vald');
+      setParkingUntilText('Ingen angivelse är vald');
       setHorizontalBarColor(`${notSelectedTextColor}bb`);
 
       return;
@@ -95,18 +100,17 @@ export const TopBar = () => {
     if (selectedFeatureIsAllowed) {
       setParkingAllowedText(parkingText.allowed);
       setParkingAllowedTextColor(allowedTextColor);
-      setDescription(parkingUntilText);
       setHorizontalBarColor(allowedColor);
     } else {
       setParkingAllowedText(parkingText.notAllowed);
       setParkingAllowedTextColor(unAllowedColor);
-      setDescription(parkingUntilText);
       setHorizontalBarColor(unAllowedColor);
     }
   }, [selectedFeatureId, selectedFeatureIsAllowed]);
 
   useEffect(() => {
     if (selectedFeature && selectedFeature.properties) {
+      setParkingUntilText(parkingAllowedUntil(selectedFeature, 'sv'));
       setParkingAddress(selectedFeature.properties.address);
     } else {
       setParkingAddress('');
@@ -127,9 +131,7 @@ export const TopBar = () => {
           <View>
             <View style={styles.textHolder}>
               <Text style={parkingTextCombined}>{parkingAllowedText}</Text>
-              <Text style={parkingUntilTextCombined}>
-                {parkingAllowedUntil(selectedFeature, 'sv')}
-              </Text>
+              <Text style={parkingUntilTextCombined}>{parkingUntilText}</Text>
               {selectedFeatureId && (
                 <View style={styles.showDetailsHolder}>
                   <Image />

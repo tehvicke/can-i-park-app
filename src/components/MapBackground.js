@@ -174,7 +174,7 @@ export const MapBackground = () => {
       }}>
       <MapboxGL.Camera
         zoomLevel={zoomLevel}
-        centerCoordinate={position}
+        defaultSettings={{ centerCoordinate: position }}
         animationDuration={0}
       />
       <FeatureRenderer />

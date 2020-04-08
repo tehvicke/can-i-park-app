@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Animatable from 'react-native-animatable';
 
-import moment, { relativeTimeRounding } from 'moment';
+import moment from 'moment';
 import 'moment/locale/sv';
+
+import { MoreDetails } from './MoreDetails.js';
 
 /* Various constants that should be replaced / added to the global state */
 const parkingText = {
@@ -14,7 +16,7 @@ const parkingText = {
 const allowedTextColor = '#005596';
 const notSelectedTextColor = '#777777';
 
-const parkingAllowedUntil = (feature, locale) => {
+const parkingAllowedUntil = (feature, locale, usersTime) => {
   if (!feature || !feature.properties) return;
 
   moment.locale('sv');
@@ -46,10 +48,10 @@ export const TopBar = () => {
     'white',
   );
   const [horizontalBarColor, setHorizontalBarColor] = useState('');
-
   const [parkingAddress, setParkingAddress] = useState('');
-
   const [parkingUntilText, setParkingUntilText] = useState('');
+
+  const [showDetails, setShowDetails] = useState(false);
 
   const selectedFeatureIsAllowed = useSelector(
     store => store.ui.selectedFeature.allowed,
@@ -134,16 +136,22 @@ export const TopBar = () => {
               <Text style={parkingUntilTextCombined}>{parkingUntilText}</Text>
               {selectedFeatureId && (
                 <View style={styles.showDetailsWrapper}>
-                  <View style={styles.showDetailsHolder}>
+                  <TouchableOpacity
+                    style={styles.showDetailsHolder}
+                    onPress={() => {
+                      setShowDetails(!showDetails);
+                    }}>
                     <Image
                       style={styles.showDetailsArrow}
                       source={require('../../lib/icons/moreinfo-arrow.png')}
                     />
                     <Text style={styles.showDetailsText}>Visa detaljer</Text>
-                  </View>
+                  </TouchableOpacity>
                 </View>
               )}
             </View>
+
+            {showDetails && <MoreDetails />}
           </View>
           <View
             style={horizontalColoredBarCombined}

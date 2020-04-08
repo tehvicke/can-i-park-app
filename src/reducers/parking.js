@@ -6,13 +6,14 @@ export const parking = createSlice({
   initialState: {
     serverInfo: {
       url:
-        // 'https://can-i-park-here-server.herokuapp.com/api/v2/' /* http://192.168.1.108:8080/ http://localhost:8080/ https://can-i-park-here-server.herokuapp.com/ */,
-        'http://192.168.1.108:8080/api/v2/',
+        'https://can-i-park-here-server.herokuapp.com/api/v2/' /* http://192.168.1.108:8080/ http://localhost:8080/ https://can-i-park-here-server.herokuapp.com/ */,
+      // 'http://192.168.1.108:8080/api/v2/',
       radius: 100,
     },
     user: {
       vehicleType: 'CAR',
       time: moment().format(),
+      // time: moment('2020-04-08T12:00:00+02:00').format(),
       locale: 'se',
     },
     position: undefined,
@@ -53,6 +54,9 @@ export const parking = createSlice({
           feature.properties.allowed = false;
         }
       });
+    },
+    setAllSelectedFeatures: (state, action) => {
+      state.allSelectedFeatures = action.payload;
     },
   },
 });

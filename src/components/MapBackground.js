@@ -103,7 +103,7 @@ export const MapBackground = () => {
       .get(
         `${serverUrl}?lat=${position[1]}&long=${
           position[0]
-        }&radius=${radius}&time=${timeNow}`,
+        }&radius=${radius}&time=${encodeURIComponent(timeNow)}`,
       )
       .then(response => {
         // console.log(response.data);
@@ -154,7 +154,9 @@ export const MapBackground = () => {
       });
       dispatch(ui.actions.setSelectedFeatureId(selectedFeatureCandidate.id));
       dispatch(parking.actions.setSelectedFeature(selectedFeatureCandidate));
-
+      dispatch(
+        parking.actions.setAllSelectedFeatures(relevantFeaturesAtPosition),
+      );
       console.log(selectedFeatureCandidate.properties);
     };
     updateSelectedFeature(map);

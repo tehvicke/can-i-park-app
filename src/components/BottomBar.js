@@ -9,6 +9,7 @@ export const BottomBar = () => {
   const userHoldsDown = useSelector(
     store => store.ui.interactions.userHoldsDown,
   );
+
   const slideDuration = useSelector(store => store.ui.animations.slideDuration);
   const fetchingFeatures = useSelector(store => store.ui.api.fetchingFeatures);
   const fetchingFeaturesMessage = useSelector(

@@ -73,16 +73,38 @@ export const DrawFeature = ({ feature }) => {
     }
   }, [isSelectedFeature]);
 
+  const styles = {
+    line: {
+      lineColor: color,
+      lineOpacity: opacity,
+      lineWidth: [
+        'interpolate',
+        ['exponential', 2],
+        ['zoom'],
+        15,
+        7,
+        16,
+        15,
+        17,
+        30,
+        18,
+        60,
+        19,
+        122,
+        20,
+        247,
+        21,
+        495,
+      ],
+    },
+  };
+
   return (
     <View>
       <MapboxGL.ShapeSource shape={feature} id={feature.id}>
         <MapboxGL.LineLayer
           id={`line_${feature.id}`}
-          style={{
-            lineColor: color,
-            lineWidth: width,
-            lineOpacity: opacity,
-          }}
+          style={styles.line}
           layerIndex={layerIndex}
         />
       </MapboxGL.ShapeSource>

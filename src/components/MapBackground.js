@@ -31,6 +31,7 @@ const handleOnRegionDidChange = async (map, position, dispatch) => {
   const zoom = await map.getZoom();
   dispatch(ui.actions.setZoomLevel(zoom));
   dispatch(ui.actions.updateFeatureWidth());
+  console.log('zoom: ', zoom);
 
   const newPos = await map.getCenter();
   dispatch(parking.actions.updatePosition(newPos));
@@ -179,6 +180,8 @@ export const MapBackground = () => {
         zoomLevel={zoomLevel}
         defaultSettings={{ centerCoordinate: position }}
         animationDuration={0}
+        minZoomLevel={15}
+        maxZoomLevel={18}
       />
       <FeatureRenderer />
       <MapboxGL.UserLocation animated={true} />

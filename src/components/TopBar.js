@@ -25,11 +25,13 @@ const parkingAllowedUntil = (feature, usersTime, usersLocale) => {
   moment.locale(usersLocale);
   if (
     feature.properties.allowed &&
-    feature.properties.type == 'TIME_RESTRICTED'
+    feature.properties.type === 'TIME_RESTRICTED'
   ) {
     time = moment(feature.properties.parkingAllowedTime.end);
-  } else if (feature.properties.type == 'ALWAYS_RESTRICTED') {
+  } else if (feature.properties.type === 'ALWAYS_RESTRICTED') {
     return feature.properties.typeDesc;
+  } else if (feature.properties.type === 'TIME_RESTRICTED_LOADING') {
+    return 'Tidsangivelse saknas, se lokala skyltar eller detaljer';
   } else {
     time = moment(feature.properties.parkingAllowedTime.start).add(7, 'd');
   }

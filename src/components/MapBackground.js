@@ -177,10 +177,9 @@ export const MapBackground = () => {
         handleOnDidFinishRenderingFrameFully(map, dispatch);
       }}>
       <MapboxGL.Camera
-        zoomLevel={zoomLevel}
-        defaultSettings={{ centerCoordinate: position }}
+        defaultSettings={{ centerCoordinate: position, zoomLevel: zoomLevel }}
         animationDuration={0}
-        minZoomLevel={15}
+        // minZoomLevel={15}
         maxZoomLevel={18}
       />
       <FeatureRenderer />

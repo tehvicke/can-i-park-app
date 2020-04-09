@@ -91,10 +91,6 @@ export const DrawFeature = ({ feature }) => {
         60,
         19,
         122,
-        20,
-        247,
-        21,
-        495,
       ],
     },
   };

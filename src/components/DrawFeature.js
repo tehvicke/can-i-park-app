@@ -11,7 +11,6 @@ export const DrawFeature = ({ feature }) => {
   /* UI stuff */
   const isSelectedFeature =
     feature.id === useSelector(store => store.ui.selectedFeature.id);
-  const width = useSelector(store => store.ui.feature.width);
   const allowedColor = useSelector(store => store.ui.feature.allowedColor);
   const unAllowedColor = useSelector(store => store.ui.feature.unAllowedColor);
   const unSelectedOpacity = useSelector(

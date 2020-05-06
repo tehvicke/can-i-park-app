@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import MapboxGL from '@react-native-mapbox-gl/maps';
 import Geolocation from 'react-native-geolocation-service';
 import { getDistance } from 'geolib';
@@ -14,8 +14,12 @@ import { MAPBOX_API_KEY } from 'react-native-dotenv';
 
 const minDistanceForFetch = 25;
 
-/* Use default public token only - so OK to include here I guess... */
 MapboxGL.setAccessToken(MAPBOX_API_KEY);
+
+const text = {
+  fetchingData: 'Hämtar ny data...',
+  fetchFailed: 'Hämtning av data misslyckades',
+};
 
 const styles = StyleSheet.create({
   map: {
@@ -28,12 +32,11 @@ const handleOnRegionDidChange = async (map, position, dispatch) => {
   dispatch(ui.actions.setUserHoldsDown(false));
   dispatch(ui.actions.setShouldUpdateSelectedFeature());
 
-  const zoom = await map.getZoom();
+  const zoom = await map.current.getZoom();
   dispatch(ui.actions.setZoomLevel(zoom));
   dispatch(ui.actions.updateFeatureWidth());
-  console.log('zoom: ', zoom);
 
-  const newPos = await map.getCenter();
+  const newPos = await map.current.getCenter();
   dispatch(parking.actions.updatePosition(newPos));
 
   if (getDistance(newPos, position) > minDistanceForFetch)
@@ -46,14 +49,17 @@ const handleOnRegionWillChange = dispatch => {
   dispatch(ui.actions.setShowDetails(false));
 };
 
-const handleOnDidFinishRenderingFrame = async (map, dispatch) => {
-  // console.log('handleOnDidFinishRenderingFrame');
-  // console.log('handleOnDidFinishRenderingFrameFully');
-  // const newPos = await map.getCenter();
-  // dispatch(parking.actions.updatePosition(newPos));
+const handleOnDidFinishRenderingMapFully = async (
+  map,
+  camera,
+  position,
+  zoomLevel,
+) => {
+  await console.log('map: ', map.current);
+  await console.log('camera: ', camera.current);
+  await camera.current.flyTo(position);
+  await camera.current.moveTo(zoomLevel);
 };
-
-const handleOnDidFinishRenderingFrameFully = async (map, dispatch) => {};
 
 export const MapBackground = () => {
   const dispatch = useDispatch();
@@ -71,15 +77,17 @@ export const MapBackground = () => {
     store => store.parking.shouldFetchFeatures,
   );
 
-  let map;
+  let map = useRef();
+  let camera = useRef();
 
-  /* On load stuff */
+  /* Center to users location on load */
+
   useEffect(() => {
     MapboxGL.setTelemetryEnabled(false);
-
+    let coords;
     Geolocation.getCurrentPosition(
       pos => {
-        const coords = [pos.coords.longitude, pos.coords.latitude];
+        coords = [pos.coords.longitude, pos.coords.latitude];
 
         dispatch(parking.actions.updatePosition(coords));
         dispatch(parking.actions.setShouldFetchFeatures());
@@ -89,17 +97,14 @@ export const MapBackground = () => {
     );
   }, []);
 
-  /* Function to fetch features */
+  /* Feature fetch functionality */
   useEffect(() => {
     if (position === undefined) {
       return;
     }
-    console.log(timeNow);
     console.log('Starting fetch for ', position);
     dispatch(ui.actions.setFetchingFeatures(true));
-    dispatch(
-      ui.actions.setFetchingFeaturesMessage('Fetching street data from API'),
-    );
+    dispatch(ui.actions.setFetchingFeaturesMessage(text.fetchingData));
 
     axios
       .get(
@@ -108,7 +113,6 @@ export const MapBackground = () => {
         }&radius=${radius}&time=${encodeURIComponent(timeNow)}`,
       )
       .then(response => {
-        // console.log(response.data);
         dispatch(parking.actions.updateFeatures(response.data));
 
         console.log('Fetch successful for ', position);
@@ -118,23 +122,19 @@ export const MapBackground = () => {
       })
       .catch(error => {
         console.log(error);
-        dispatch(
-          ui.actions.setFetchingFeaturesMessage(
-            'Fetch failed due to API not responding',
-          ),
-        );
+        dispatch(ui.actions.setFetchingFeaturesMessage(text.fetchFailed));
       });
   }, [shouldFetchFeatures]);
 
+  /* Feature selection */
   useEffect(() => {
     const updateSelectedFeature = async map => {
-      const position = await map.getCenter();
-      const pointFromCoords = await map.getPointInView(position);
-      const featuresAtPosition = await map.queryRenderedFeaturesAtPoint(
+      const currentPosition = await map.current.getCenter();
+      const pointFromCoords = await map.current.getPointInView(currentPosition);
+      const featuresAtPosition = await map.current.queryRenderedFeaturesAtPoint(
         pointFromCoords,
       );
 
-      // if (featuresAtPosition.features.length === 0) return;
       const relevantFeaturesAtPosition = featuresAtPosition.features.filter(
         feature => {
           return (
@@ -159,27 +159,23 @@ export const MapBackground = () => {
       dispatch(
         parking.actions.setAllSelectedFeatures(relevantFeaturesAtPosition),
       );
-      console.log(selectedFeatureCandidate.properties);
     };
     updateSelectedFeature(map);
   }, [shouldUpdateSelectedFeature]);
 
   return (
     <MapboxGL.MapView
-      ref={c => (map = c)}
+      ref={c => (map.current = c)}
       style={styles.map}
       onRegionWillChange={() => handleOnRegionWillChange(dispatch)}
       onRegionDidChange={() => handleOnRegionDidChange(map, position, dispatch)}
-      onDidFinishRenderingFrame={() =>
-        handleOnDidFinishRenderingFrame(map, dispatch)
-      }
-      onDidFinishRenderingFrameFully={() => {
-        handleOnDidFinishRenderingFrameFully(map, dispatch);
-      }}>
+      onDidFinishRenderingMapFully={() =>
+        handleOnDidFinishRenderingMapFully(map, camera, position, zoomLevel)
+      }>
       <MapboxGL.Camera
-        defaultSettings={{ centerCoordinate: position, zoomLevel: zoomLevel }}
+        ref={c => (camera.current = c)}
+        defaultSettings={{ zoomLevel: zoomLevel }}
         animationDuration={0}
-        // minZoomLevel={15}
         maxZoomLevel={18}
       />
       <FeatureRenderer />

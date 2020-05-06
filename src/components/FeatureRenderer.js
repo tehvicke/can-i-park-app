@@ -4,8 +4,15 @@ import { DrawFeature } from './DrawFeature.js';
 
 export const FeatureRenderer = () => {
   const features = useSelector(store => store.parking.features);
+  const minZoomLevelForFeatures = useSelector(
+    store => store.ui.map.minZoomLevelForFeatures,
+  );
+  const zoomLevel = useSelector(store => store.ui.map.zoomLevel);
 
-  return features.map((feature, index) => {
-    return <DrawFeature feature={feature} index={index} key={feature.id} />;
-  });
+  return (
+    zoomLevel >= minZoomLevelForFeatures &&
+    features.map((feature, index) => {
+      return <DrawFeature feature={feature} index={index} key={feature.id} />;
+    })
+  );
 };

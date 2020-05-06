@@ -4,7 +4,7 @@ export const ui = createSlice({
   name: 'ui',
   initialState: {
     selectedFeature: { id: undefined, shouldUpdate: false, allowed: false },
-    map: { zoomLevel: 16, minZoomLevel: 14, maxZoomLevel: 19 },
+    map: { zoomLevel: 18, minZoomLevelForFeatures: 14, maxZoomLevel: 18 },
     api: {
       fetchingFeatures: false,
       fetchingFeaturesMessage: '',

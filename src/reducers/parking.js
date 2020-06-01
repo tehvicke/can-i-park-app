@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
-import moment from 'moment';
+import { createSlice } from '@reduxjs/toolkit'
+import moment from 'moment'
 
 export const parking = createSlice({
   name: 'parking',
@@ -13,7 +13,7 @@ export const parking = createSlice({
     user: {
       vehicleType: 'CAR',
       time: moment().format(),
-      // time: moment('2020-04-08T12:00:00+02:00').format(),
+      // time: moment('2020-05-26T15:00:00+02:00').format(),
       locale: 'sv',
     },
     position: undefined,
@@ -23,40 +23,40 @@ export const parking = createSlice({
   },
   reducers: {
     updatePosition: (state, action) => {
-      state.position = action.payload;
+      state.position = action.payload
     },
     updateFeatures: (state, action) => {
       action.payload.map(newFeature => {
-        let featureExists = false;
+        let featureExists = false
 
-        newFeature.properties.allowed = true;
+        newFeature.properties.allowed = true
         // console.log(newFeature);
 
         state.features.map(existingFeature => {
           if (newFeature.id === existingFeature.id) {
-            featureExists = true;
-            return;
+            featureExists = true
+            return
           }
-        });
-        if (!featureExists) state.features.push(newFeature);
-      });
+        })
+        if (!featureExists) state.features.push(newFeature)
+      })
       // console.log(state.features);
     },
     setShouldFetchFeatures: state => {
-      state.shouldFetchFeatures = !state.shouldFetchFeatures;
+      state.shouldFetchFeatures = !state.shouldFetchFeatures
     },
     setSelectedFeature: (state, action) => {
-      state.selectedFeature = action.payload;
+      state.selectedFeature = action.payload
     },
     setFeatureIsNotAllowed: (state, action) => {
       state.features.find(feature => {
         if (action.payload.id === feature.id) {
-          feature.properties.allowed = false;
+          feature.properties.allowed = false
         }
-      });
+      })
     },
     setAllSelectedFeatures: (state, action) => {
-      state.allSelectedFeatures = action.payload;
+      state.allSelectedFeatures = action.payload
     },
   },
-});
+})

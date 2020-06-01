@@ -1,139 +1,143 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import * as Animatable from 'react-native-animatable';
+import React, { useEffect, useState } from 'react'
+import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native'
+import { useDispatch, useSelector } from 'react-redux'
+import * as Animatable from 'react-native-animatable'
 
-import { ui } from '../reducers/ui.js';
+import { ui } from '../reducers/ui.js'
 
-import moment from 'moment';
-import 'moment/locale/sv';
+import moment from 'moment'
+import 'moment/locale/sv'
 
-import { MoreDetails } from './MoreDetails.js';
+import { MoreDetails } from './MoreDetails.js'
 
 /* Various constants that should be replaced / added to the global state */
 const parkingText = {
   allowed: 'Gatuparkering tillåten',
   notAllowed: 'Gatuparkering ej tillåten',
-};
-const allowedTextColor = '#005596';
-const notSelectedTextColor = '#777777';
+}
+const allowedTextColor = '#005596'
+const notSelectedTextColor = '#777777'
 
 const parkingAllowedUntil = (feature, usersTime, usersLocale) => {
-  if (!feature || !feature.properties) return;
+  if (!feature || !feature.properties) return
 
-  let time;
-  moment.locale(usersLocale);
+  const momentStart = moment(feature.properties.parkingAllowedTime.start)
+  const momentEnd = moment(feature.properties.parkingAllowedTime.end)
+  console.log(momentStart)
+
+  let time
+  moment.locale(usersLocale)
   if (
     feature.properties.allowed &&
     feature.properties.type === 'TIME_RESTRICTED'
   ) {
-    time = moment(feature.properties.parkingAllowedTime.end);
+    time = momentEnd
   } else if (feature.properties.type === 'ALWAYS_RESTRICTED') {
-    return feature.properties.typeDesc;
+    return feature.properties.typeDesc
   } else if (feature.properties.type === 'TIME_RESTRICTED_LOADING') {
-    return 'Tidsangivelse saknas, se lokala skyltar eller detaljer';
+    return 'Tidsangivelse saknas, se lokala skyltar eller detaljer'
   } else {
-    time = moment(feature.properties.parkingAllowedTime.start).add(7, 'd');
+    const regulationLength = momentEnd.diff(momentStart, 'd') + 1
+
+    time = momentStart.add(regulationLength, 'd')
   }
-  return `Fram tills ${time.calendar().toLowerCase()} (${time.from(
-    usersTime,
-  )})`;
-};
+  return `Fram tills ${time.calendar().toLowerCase()} (${time.from(usersTime)})`
+}
 
 export const TopBar = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const userHoldsDown = useSelector(
     store => store.ui.interactions.userHoldsDown,
-  );
-  const slideDuration = useSelector(store => store.ui.animations.slideDuration);
-  const unAllowedColor = useSelector(store => store.ui.feature.unAllowedColor);
-  const allowedColor = useSelector(store => store.ui.feature.allowedColor);
-  const selectedFeature = useSelector(store => store.parking.selectedFeature);
-  const usersTime = useSelector(store => store.parking.user.time);
-  const usersLocale = useSelector(store => store.parking.user.locale);
+  )
+  const slideDuration = useSelector(store => store.ui.animations.slideDuration)
+  const unAllowedColor = useSelector(store => store.ui.feature.unAllowedColor)
+  const allowedColor = useSelector(store => store.ui.feature.allowedColor)
+  const selectedFeature = useSelector(store => store.parking.selectedFeature)
+  const usersTime = useSelector(store => store.parking.user.time)
+  const usersLocale = useSelector(store => store.parking.user.locale)
 
-  const [parkingAllowedText, setParkingAllowedText] = useState('');
+  const [parkingAllowedText, setParkingAllowedText] = useState('')
   const [parkingAllowedTextColor, setParkingAllowedTextColor] = useState(
     'white',
-  );
-  const [horizontalBarColor, setHorizontalBarColor] = useState('');
-  const [parkingAddress, setParkingAddress] = useState('');
-  const [parkingUntilText, setParkingUntilText] = useState('');
+  )
+  const [horizontalBarColor, setHorizontalBarColor] = useState('')
+  const [parkingAddress, setParkingAddress] = useState('')
+  const [parkingUntilText, setParkingUntilText] = useState('')
 
-  const showDetails = useSelector(store => store.ui.interactions.showDetails);
+  const showDetails = useSelector(store => store.ui.interactions.showDetails)
 
   const selectedFeatureIsAllowed = useSelector(
     store => store.ui.selectedFeature.allowed,
-  );
-  const selectedFeatureId = useSelector(store => store.ui.selectedFeature.id);
+  )
+  const selectedFeatureId = useSelector(store => store.ui.selectedFeature.id)
 
-  let animatedHolder;
-  let addressBar;
-  let horizontalColoredBar;
+  let animatedHolder
+  let addressBar
+  let horizontalColoredBar
 
-  const parkingTextStyle = styles.parkingAllowedText;
+  const parkingTextStyle = styles.parkingAllowedText
   const parkingTextCombined = StyleSheet.flatten([
     { color: parkingAllowedTextColor },
     parkingTextStyle,
-  ]);
+  ])
 
-  const parkingUntilTextStyle = styles.parkingUntilText;
+  const parkingUntilTextStyle = styles.parkingUntilText
   const parkingUntilTextCombined = StyleSheet.flatten([
     { color: parkingAllowedTextColor },
     parkingUntilTextStyle,
-  ]);
+  ])
 
-  const horizontalColoredBarStyle = styles.horizontalColoredBar;
+  const horizontalColoredBarStyle = styles.horizontalColoredBar
   const horizontalColoredBarCombined = StyleSheet.flatten([
     { backgroundColor: horizontalBarColor },
     horizontalColoredBarStyle,
-  ]);
-  const showDetailsArrow = styles.showDetailsArrow;
+  ])
+  const showDetailsArrow = styles.showDetailsArrow
   const showDetailsArrowCombined = StyleSheet.flatten([
     { transform: [{ rotate: `${showDetails ? '0' : '180'}deg` }] },
     showDetailsArrow,
-  ]);
+  ])
 
   useEffect(() => {
     if (userHoldsDown) {
-      animatedHolder.slideOutUp(slideDuration);
-      if (selectedFeatureId) addressBar.slideOutUp(slideDuration);
+      animatedHolder.slideOutUp(slideDuration)
+      if (selectedFeatureId) addressBar.slideOutUp(slideDuration)
     } else {
-      animatedHolder.slideInDown(slideDuration);
-      if (selectedFeatureId) addressBar.slideInDown(slideDuration);
+      animatedHolder.slideInDown(slideDuration)
+      if (selectedFeatureId) addressBar.slideInDown(slideDuration)
     }
-  }, [userHoldsDown]);
+  }, [userHoldsDown])
 
   useEffect(() => {
     if (!selectedFeatureId) {
-      setParkingAllowedText('Information saknas');
-      setParkingAllowedTextColor(notSelectedTextColor);
-      setParkingUntilText('Ingen angivelse är vald');
-      setHorizontalBarColor(`${notSelectedTextColor}bb`);
+      setParkingAllowedText('Information saknas')
+      setParkingAllowedTextColor(notSelectedTextColor)
+      setParkingUntilText('Ingen angivelse är vald')
+      setHorizontalBarColor(`${notSelectedTextColor}bb`)
 
-      return;
+      return
     }
     if (selectedFeatureIsAllowed) {
-      setParkingAllowedText(parkingText.allowed);
-      setParkingAllowedTextColor('#005596');
-      setHorizontalBarColor(allowedColor);
+      setParkingAllowedText(parkingText.allowed)
+      setParkingAllowedTextColor('#005596')
+      setHorizontalBarColor(allowedColor)
     } else {
-      setParkingAllowedText(parkingText.notAllowed);
-      setParkingAllowedTextColor(unAllowedColor);
-      setHorizontalBarColor(unAllowedColor);
+      setParkingAllowedText(parkingText.notAllowed)
+      setParkingAllowedTextColor(unAllowedColor)
+      setHorizontalBarColor(unAllowedColor)
     }
-  }, [selectedFeatureId, selectedFeatureIsAllowed]);
+  }, [selectedFeatureId, selectedFeatureIsAllowed])
 
   useEffect(() => {
     if (selectedFeature && selectedFeature.properties) {
       setParkingUntilText(
         parkingAllowedUntil(selectedFeature, usersTime, usersLocale),
-      );
-      setParkingAddress(selectedFeature.properties.address);
+      )
+      setParkingAddress(selectedFeature.properties.address)
     } else {
-      setParkingAddress('');
+      setParkingAddress('')
     }
-  }, [selectedFeature]);
+  }, [selectedFeature])
 
   return (
     <View style={styles.topBar}>
@@ -155,7 +159,7 @@ export const TopBar = () => {
                   <TouchableOpacity
                     style={styles.showDetailsHolder}
                     onPress={() => {
-                      dispatch(ui.actions.setShowDetails(!showDetails));
+                      dispatch(ui.actions.setShowDetails(!showDetails))
                     }}>
                     <Image
                       style={showDetailsArrowCombined}
@@ -183,8 +187,8 @@ export const TopBar = () => {
         )}
       </Animatable.View>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   topBar: {
@@ -277,4 +281,4 @@ const styles = StyleSheet.create({
     height: 25,
     width: '100%',
   },
-});
+})
